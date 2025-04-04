@@ -150,28 +150,27 @@ body {
 }
 
 .scroll-indicator {
-    position: relative;
-    text-align: center;
-    animation: fadeInUp 1s ease-out 1s both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
     cursor: pointer;
-    transition: transform 0.3s ease;
-    padding: 15px;
 }
 
-.scroll-indicator p {
-    color: #fff;
-    margin: 0 0 10px 0;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    line-height: 1.4;
+.scroll-indicator:hover {
     opacity: 0.8;
 }
 
+.scroll-indicator p {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
 .scroll-arrow {
-    font-size: 2rem;
-    color: #00ccff;
+    font-size: 24px;
     animation: bounce 2s infinite;
-    text-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
 }
 
 .form-section {
@@ -329,11 +328,26 @@ button[type="submit"]:hover {
     display: none;
     color: #ff4444;
     font-size: 0.9rem;
-    margin-top: 5px;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: rgba(255, 68, 68, 0.1);
+    border-radius: 6px;
+    border-left: 3px solid #ff4444;
 }
 
-.question-group.error .required-error {
-    display: block;
+.question-group.error {
+    border-left: 3px solid #ff4444;
+    padding-left: 17px;
+    background: rgba(255, 68, 68, 0.05);
+}
+
+.question-group.error label {
+    color: #ff4444;
+}
+
+.question-group.error .checkbox-group {
+    border-left: none;
+    padding-left: 0;
 }
 
 textarea {
@@ -808,19 +822,24 @@ textarea.error,
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 60px;
+    min-height: 500px;
 }
 
 .description-slide {
     display: none;
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease-out;
+    transform: translateX(50px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
 }
 
 .description-slide.active {
     display: block;
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
 }
 
 .description-slide h2 {
@@ -915,6 +934,8 @@ textarea.error,
     margin-top: 40px;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 20;
 }
 
 .nav-dot {
@@ -930,11 +951,13 @@ textarea.error,
 
 .nav-dot:hover {
     background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
 }
 
 .nav-dot.active {
     background: #00ccff;
     transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
 }
 
 .beta-intro {
@@ -1090,17 +1113,17 @@ textarea.error,
 }
 
 .prev-arrow {
-    left: 0;
+    left: 20px;
 }
 
 .next-arrow {
-    right: 0;
+    right: 20px;
 }
 
-.nav-arrow:disabled {
-    opacity: 0.3;
+.nav-arrow:disabled,
+.nav-arrow[style*="opacity: 0.3"] {
     cursor: not-allowed;
-    transform: translateY(-50%);
+    pointer-events: none;
 }
 
 .footer {
