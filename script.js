@@ -20,60 +20,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function validateStep(stepIndex) {
         const currentStep = steps[stepIndex];
-        const requiredInputs = currentStep.querySelectorAll('input[required]:not([type="checkbox"]), textarea[required]');
         let isValid = true;
 
+        // Limpiar errores previos
         currentStep.querySelectorAll('.question-group').forEach(group => {
             group.classList.remove('error');
         });
 
-        const radioGroups = new Set();
-        const checkboxGroups = new Set();
+        // Validar grupos con asterisco rojo
+        currentStep.querySelectorAll('.question-group').forEach(group => {
+            const hasRedAsterisk = group.querySelector('label span[style*="color: red"]');
+            if (!hasRedAsterisk) return;
 
-        // Recolectar grupos de radio buttons
-        currentStep.querySelectorAll('input[type="radio"][required]').forEach(input => {
-            radioGroups.add(input.name);
-        });
-
-        // Recolectar grupos de checkboxes que necesitan validación
-        currentStep.querySelectorAll('input[type="checkbox"]').forEach(input => {
-            if (input.closest('.question-group').querySelector('span[style*="color: red"]')) {
-                checkboxGroups.add(input.name);
-            }
-        });
-
-        // Validar radio buttons
-        radioGroups.forEach(groupName => {
-            const checkedInput = currentStep.querySelector(`input[name="${groupName}"]:checked`);
-            if (!checkedInput) {
-                isValid = false;
-                const questionGroup = currentStep.querySelector(`input[name="${groupName}"]`).closest('.question-group');
-                questionGroup.classList.add('error');
-            }
-        });
-
-        // Validar grupos de checkbox
-        checkboxGroups.forEach(groupName => {
-            const checkedInputs = currentStep.querySelectorAll(`input[name="${groupName}"]:checked`);
-            if (checkedInputs.length === 0) {
-                isValid = false;
-                const questionGroup = currentStep.querySelector(`input[name="${groupName}"]`).closest('.question-group');
-                questionGroup.classList.add('error');
-            }
-        });
-
-        // Validar campos de texto y textarea
-        requiredInputs.forEach(input => {
-            if (input.type === 'text' || input.type === 'textarea' || input.type === 'email') {
-                if (!input.value.trim()) {
+            // Validar radio buttons
+            const radioInputs = group.querySelectorAll('input[type="radio"]');
+            if (radioInputs.length > 0) {
+                const groupName = radioInputs[0].name;
+                const isChecked = Array.from(radioInputs).some(input => input.checked);
+                if (!isChecked) {
                     isValid = false;
-                    const questionGroup = input.closest('.question-group');
-                    questionGroup.classList.add('error');
+                    group.classList.add('error');
                 }
             }
+
+            // Validar checkboxes
+            const checkboxInputs = group.querySelectorAll('input[type="checkbox"]');
+            if (checkboxInputs.length > 0) {
+                const groupName = checkboxInputs[0].name;
+                const isChecked = Array.from(checkboxInputs).some(input => input.checked);
+                if (!isChecked) {
+                    isValid = false;
+                    group.classList.add('error');
+                }
+            }
+
+            // Validar campos de texto y textarea
+            const textInputs = group.querySelectorAll('input[type="text"], textarea');
+            textInputs.forEach(input => {
+                if (!input.disabled && !input.value.trim()) {
+                    isValid = false;
+                    group.classList.add('error');
+                }
+            });
+
+            // Validar email
+            const emailInputs = group.querySelectorAll('input[type="email"]');
+            emailInputs.forEach(input => {
+                if (!input.disabled && input.value.trim() && !isValidEmail(input.value)) {
+                    isValid = false;
+                    group.classList.add('error');
+                }
+            });
         });
 
         return isValid;
+    }
+
+    function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
     }
 
     function getFormData() {
@@ -138,13 +143,25 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log('Evento submit detectado');
         e.preventDefault();
 
-        console.log('Validando paso:', currentFormStep);
-        if (!validateStep(currentFormStep)) {
-            console.log('Validación fallida');
+        // Validar todos los pasos antes de enviar
+        let isValid = true;
+        for (let i = 0; i < steps.length; i++) {
+            console.log(`Validando paso ${i}`);
+            if (!validateStep(i)) {
+                console.log(`Validación fallida en paso ${i}`);
+                isValid = false;
+                showStep(i);
+                scrollToForm();
+                break;
+            }
+        }
+
+        if (!isValid) {
+            console.log('Validación fallida - formulario no enviado');
             return;
         }
-        console.log('Validación exitosa');
 
+        console.log('Validación exitosa - enviando formulario');
         const submitButton = form.querySelector('button[type="submit"]');
         if (submitButton) {
             submitButton.disabled = true;
@@ -207,6 +224,80 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, 7000);
     });
+
+    // Actualizar el manejo de los campos "otro"
+    document.querySelectorAll('.otro-option input[type="radio"], .otro-option input[type="checkbox"]').forEach(input => {
+        const otroInput = input.parentElement.querySelector('.otro-input');
+        if (otroInput) {
+            input.addEventListener('change', () => {
+                otroInput.disabled = !input.checked;
+                if (input.checked) {
+                    otroInput.focus();
+                }
+            });
+        }
+    });
+
+    // Mostrar los mensajes de error cuando se cambia de paso
+    document.querySelectorAll('.next-btn, .prev-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const currentStep = steps[currentFormStep];
+            currentStep.querySelectorAll('.question-group').forEach(group => {
+                const hasRedAsterisk = group.querySelector('label span[style*="color: red"]');
+                if (hasRedAsterisk) {
+                    const errorDiv = group.querySelector('.required-error');
+                    if (errorDiv) {
+                        errorDiv.style.display = group.classList.contains('error') ? 'block' : 'none';
+                    }
+                }
+            });
+        });
+    });
+
+    // Añadir validación en tiempo real para los campos
+    document.querySelectorAll('.question-group').forEach(group => {
+        const hasRedAsterisk = group.querySelector('label span[style*="color: red"]');
+        if (hasRedAsterisk) {
+            const inputs = group.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('change', () => {
+                    const errorDiv = group.querySelector('.required-error');
+                    if (errorDiv) {
+                        const isValid = validateQuestionGroup(group);
+                        errorDiv.style.display = isValid ? 'none' : 'block';
+                        group.classList.toggle('error', !isValid);
+                    }
+                });
+            });
+        }
+    });
+
+    function validateQuestionGroup(group) {
+        const radioInputs = group.querySelectorAll('input[type="radio"]');
+        const checkboxInputs = group.querySelectorAll('input[type="checkbox"]');
+        const textInputs = group.querySelectorAll('input[type="text"], textarea');
+        const emailInputs = group.querySelectorAll('input[type="email"]');
+
+        if (radioInputs.length > 0) {
+            return Array.from(radioInputs).some(input => input.checked);
+        }
+
+        if (checkboxInputs.length > 0) {
+            return Array.from(checkboxInputs).some(input => input.checked);
+        }
+
+        if (textInputs.length > 0) {
+            return Array.from(textInputs).every(input => input.disabled || input.value.trim());
+        }
+
+        if (emailInputs.length > 0) {
+            return Array.from(emailInputs).every(input => 
+                input.disabled || !input.value.trim() || isValidEmail(input.value)
+            );
+        }
+
+        return true;
+    }
 
     showStep(currentFormStep);
 });
