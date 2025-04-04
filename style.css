@@ -1,8 +1,8 @@
 body {
-  margin: 0;
+    margin: 0;
   padding: 0;
   background: url('assets/fondo-cubos.jpg') center center / cover no-repeat fixed;
-  font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif;
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
@@ -81,9 +81,9 @@ body {
     align-items: center;
     justify-content: space-between;
     min-height: 80vh;
-}
-
-.logo {
+  }
+  
+  .logo {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -125,9 +125,9 @@ body {
     filter: drop-shadow(0 0 30px rgba(0, 204, 255, 0.5));
     opacity: 0.8;
     border-radius: 28px;
-}
-
-.title {
+  }
+  
+  .title {
     font-size: 5rem;
     font-weight: 700;
     letter-spacing: 2px;
@@ -137,9 +137,9 @@ body {
     -webkit-text-fill-color: transparent;
     animation: shine 3s linear infinite;
     filter: drop-shadow(0 0 15px rgba(0, 204, 255, 0.3));
-}
-
-.description {
+  }
+  
+  .description {
     font-size: 2rem;
     line-height: 1.4;
     color: #fff;
@@ -374,14 +374,14 @@ input[type="email"]:focus {
 
 @keyframes fadeIn {
     from {
-        opacity: 0;
-        transform: translateY(20px);
+      opacity: 0;
+      transform: scale(0.95);
     }
     to {
-        opacity: 1;
-        transform: translateY(0);
+      opacity: 1;
+      transform: scale(1);
     }
-}
+  }
 
 @keyframes rotate {
     from {
@@ -464,9 +464,9 @@ input[type="email"]:focus {
     50% {
         transform: translateY(-5px);
     }
-}
-
-form {
+  }
+  
+  form {
     width: 100%;
     max-width: 700px;
     display: flex;
@@ -476,9 +476,9 @@ form {
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-}
-
-h3 {
+  }
+  
+  h3 {
     font-size: 1.5rem;
     color: #ffffff;
     margin: 0 0 30px 0;
@@ -489,12 +489,12 @@ h3 {
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-}
-
-input[type="text"],
-input[type="email"],
-textarea,
-select {
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  select {
     padding: 12px;
     background-color: #1e1e1e;
     border: 1px solid #333;
@@ -502,11 +502,10 @@ select {
     color: #fff;
     font-size: 1rem;
     width: 100%;
-}
-
+  }
+  
 .thanks {
     display: none;
-    position: relative;
     width: 100%;
     padding: 40px 20px;
     text-align: center;
@@ -553,8 +552,14 @@ select {
 
 .thanks.show {
     display: flex;
-    opacity: 1;
-}
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    animation: fadeIn 0.5s ease-in-out;
+  }
 
 .thanks-content {
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
@@ -1142,7 +1147,7 @@ textarea.error,
     color: #00ccff;
     font-size: 1.2rem;
     margin-bottom: 20px;
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .footer-column ul {

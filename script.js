@@ -28,8 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const steps = form.querySelectorAll('.form-step');
     const nextButtons = form.querySelectorAll('.next-btn');
     const prevButtons = form.querySelectorAll('.prev-btn');
-    let currentStep = 0;
-  
+    let currentFormStep = 0;
+
+    // Inicializar el primer paso del formulario
+    steps[0].classList.add('active');
+
     // Manejar campos "Otro"
     document.querySelectorAll('.otro-option input[type="radio"], .otro-option input[type="checkbox"]').forEach(input => {
       input.addEventListener('change', (e) => {
@@ -88,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 step.classList.remove('active');
             }
         });
-        currentStep = stepIndex;
+        currentFormStep = stepIndex;
     }
   
     function scrollToForm() {
@@ -174,9 +177,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
     nextButtons.forEach(button => {
         button.addEventListener('click', () => {
-            if (validateStep(currentStep)) {
-                currentStep++;
-                showStep(currentStep);
+            if (validateStep(currentFormStep)) {
+                currentFormStep++;
+                showStep(currentFormStep);
                 scrollToForm();
             }
         });
@@ -184,8 +187,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
     prevButtons.forEach(button => {
         button.addEventListener('click', () => {
-            currentStep--;
-            showStep(currentStep);
+            currentFormStep--;
+            showStep(currentFormStep);
             scrollToForm();
         });
     });
@@ -241,31 +244,43 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        if (!validateStep(currentStep)) {
+        // Validar el último paso
+        if (!validateStep(currentFormStep)) {
             return;
         }
         
-        // Mostrar algún indicador de carga
+        // Obtener elementos necesarios
         const submitButton = document.querySelector('button[type="submit"]');
+        const thanksMessage = document.getElementById('thanks-message');
+        
+        // Deshabilitar el botón
         if (submitButton) {
             submitButton.disabled = true;
             submitButton.textContent = 'Enviando...';
         }
         
-        // Recopilar los datos del formulario
+        // Recopilar datos
         const formData = getFormData();
         
-        // URL del Google Apps Script publicado como aplicación web
+        // Mostrar mensaje de gracias
+        if (thanksMessage) {
+            thanksMessage.style.display = 'block';
+            thanksMessage.style.position = 'fixed';
+            thanksMessage.style.top = '50%';
+            thanksMessage.style.left = '50%';
+            thanksMessage.style.transform = 'translate(-50%, -50%)';
+            thanksMessage.style.zIndex = '1000';
+            thanksMessage.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+            thanksMessage.style.padding = '30px';
+            thanksMessage.style.borderRadius = '15px';
+            thanksMessage.style.width = '90%';
+            thanksMessage.style.maxWidth = '600px';
+            thanksMessage.style.textAlign = 'center';
+            thanksMessage.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.5)';
+        }
+        
+        // URL del Google Apps Script
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzm2inGDocC8b7582kfY5n_fuN4AZMvwAThFKquj3RYWQzWtpA8kp-Qts9AQW6D0VDO/exec';
-        
-        // Guardar datos en localStorage como respaldo
-        localStorage.setItem('wallydo_form_data', JSON.stringify(formData));
-        localStorage.setItem('wallydo_form_submitted', new Date().toISOString());
-        
-        // Mostrar mensaje de gracias inmediatamente para mejor UX
-        const thanksMessage = document.getElementById('thanks-message');
-        form.style.display = 'none';
-        thanksMessage.style.display = 'block';
         
         // Enviar datos a Google Sheets
         fetch(GOOGLE_SCRIPT_URL, {
@@ -275,18 +290,52 @@ document.addEventListener("DOMContentLoaded", () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(formData)
-        }).catch(error => {
+        })
+        .then(() => {
+            // Guardar en localStorage como respaldo
+            localStorage.setItem('wallydo_form_data', JSON.stringify(formData));
+            localStorage.setItem('wallydo_form_submitted', new Date().toISOString());
+            
+            // Esperar 7 segundos antes de resetear
+            setTimeout(() => {
+                // Ocultar mensaje de gracias
+                if (thanksMessage) {
+                    thanksMessage.style.display = 'none';
+                }
+                
+                // Resetear formulario
+                form.reset();
+                
+                // Volver al primer paso
+                currentFormStep = 0;
+                showStep(currentFormStep);
+                
+                // Scroll al inicio del formulario
+                const formSection = document.querySelector('.form-section');
+                if (formSection) {
+                    formSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Restaurar botón
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = '¡Únete a la Beta!';
+                }
+            }, 7000);
+        })
+        .catch(error => {
             console.error('Error al enviar datos:', error);
-        }).finally(() => {
+            // Mostrar mensaje de error
+            alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+            
+            // Restaurar botón
             if (submitButton) {
                 submitButton.disabled = false;
                 submitButton.textContent = '¡Únete a la Beta!';
             }
         });
-        
-        // Scroll al mensaje de agradecimiento
-        thanksMessage.scrollIntoView({ behavior: 'smooth' });
     });
+
   
     // Navegación de los slides de descripción
     const slides = document.querySelectorAll('.description-slide');
@@ -338,50 +387,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Inicializar
     showSlide(currentSlide);
-
-    // Manejo del formulario
-    const formSteps = document.querySelectorAll('.form-step');
-    let currentFormStep = 0;
-
-    // Inicializar el primer paso del formulario
-    formSteps[0].classList.add('active');
-
-    function showFormStep(stepIndex) {
-        formSteps.forEach((step, index) => {
-            if (index === stepIndex) {
-                step.classList.add('active');
-            } else {
-                step.classList.remove('active');
-            }
-        });
-        currentFormStep = stepIndex;
-    }
-
-    // Event listeners para los botones de navegación del formulario
-    document.querySelectorAll('.next-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            if (validateStep(currentFormStep)) {
-                if (currentFormStep < formSteps.length - 1) {
-                    showFormStep(currentFormStep + 1);
-                }
-            }
-        });
-    });
-
-    document.querySelectorAll('.prev-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            if (currentFormStep > 0) {
-                showFormStep(currentFormStep - 1);
-            }
-        });
-    });
-
-    // Limpiar errores al interactuar con los campos
-    form.addEventListener('input', function(e) {
-        const questionGroup = e.target.closest('.question-group');
-        if (questionGroup) {
-            questionGroup.classList.remove('error');
-        }
-    });
 });
   
