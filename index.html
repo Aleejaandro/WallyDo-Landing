@@ -143,34 +143,33 @@
           <h3>Perfil del Participante</h3>
         
           <div class="question-group">
-            <label>Edad: <span style="color: red">*</span></label>
+            <label for="edad">Edad: <span style="color: red">*</span></label>
             <div class="checkbox-group">
-              <label><input type="radio" name="edad" value="Menos de 18" required> Menos de 18</label>
-              <label><input type="radio" name="edad" value="18–24"> 18–24</label>
-              <label><input type="radio" name="edad" value="25–34"> 25–34</label>
-              <label><input type="radio" name="edad" value="35–44"> 35–44</label>
-              <label><input type="radio" name="edad" value="45–54"> 45–54</label>
-              <label><input type="radio" name="edad" value="55 o más"> 55 o más</label>
+              <label><input type="radio" name="edad" id="edad-menos-18" value="Menos de 18" autocomplete="off"> Menos de 18</label>
+              <label><input type="radio" name="edad" id="edad-18-24" value="18–24" autocomplete="off"> 18–24</label>
+              <label><input type="radio" name="edad" id="edad-25-34" value="25–34" autocomplete="off"> 25–34</label>
+              <label><input type="radio" name="edad" id="edad-35-44" value="35–44" autocomplete="off"> 35–44</label>
+              <label><input type="radio" name="edad" id="edad-45-54" value="45–54" autocomplete="off"> 45–54</label>
+              <label><input type="radio" name="edad" id="edad-55-mas" value="55 o más" autocomplete="off"> 55 o más</label>
               <div class="required-error">* Esta pregunta es obligatoria</div>
             </div>
             
           </div>
         
           <div class="question-group">
-            <label>Ocupación actual: <span style="color: red">*</span></label>
+            <label for="ocupacion">Ocupación actual: <span style="color: red">*</span></label>
             <div class="checkbox-group">
-              <label><input type="radio" name="ocupacion" value="Estudiante" required> Estudiante</label>
-              <label><input type="radio" name="ocupacion" value="Empleado"> Empleado/a por cuenta ajena</label>
-              <label><input type="radio" name="ocupacion" value="Freelance"> Freelance / Autónomo/a</label>
-              <label><input type="radio" name="ocupacion" value="Empresario"> Empresario/a</label>
-              <label><input type="radio" name="ocupacion" value="Desempleado"> Desempleado/a</label>
+              <label><input type="radio" name="ocupacion" id="ocupacion-estudiante" value="Estudiante" autocomplete="off"> Estudiante</label>
+              <label><input type="radio" name="ocupacion" id="ocupacion-empleado" value="Empleado" autocomplete="off"> Empleado/a por cuenta ajena</label>
+              <label><input type="radio" name="ocupacion" id="ocupacion-freelance" value="Freelance" autocomplete="off"> Freelance / Autónomo/a</label>
+              <label><input type="radio" name="ocupacion" id="ocupacion-empresario" value="Empresario" autocomplete="off"> Empresario/a</label>
+              <label><input type="radio" name="ocupacion" id="ocupacion-desempleado" value="Desempleado" autocomplete="off"> Desempleado/a</label>
               <div class="otro-option">
                 <label>
-                  <input type="radio" name="ocupacion" value="otro">
+                  <input type="radio" name="ocupacion" id="ocupacion-otro" value="otro" autocomplete="off">
                   Otro:
-                  <input type="text" name="ocupacion_otro" class="otro-input" disabled>
+                  <input type="text" name="ocupacion_otro" id="ocupacion-otro-texto" class="otro-input" disabled autocomplete="off">
                 </label>
-                <span class="error-message">* Esta pregunta es obligatoria</span>
               </div>
               <div class="required-error">* Esta pregunta es obligatoria</div>
             </div>
@@ -180,7 +179,7 @@
           <div class="question-group">
             <label>¿Te consideras una persona organizada? <span style="color: red">*</span></label>
             <div class="checkbox-group">
-              <label><input type="radio" name="organizacion" value="Sí" required> Sí</label>
+              <label><input type="radio" name="organizacion" value="Sí"> Sí</label>
               <label><input type="radio" name="organizacion" value="A veces"> A veces</label>
               <label><input type="radio" name="organizacion" value="No"> No</label>
               <div class="required-error">* Esta pregunta es obligatoria</div>
@@ -199,7 +198,7 @@
           <div class="question-group">
             <label>¿Con qué frecuencia te sientes agobiado/a por tus tareas? <span style="color: red">*</span></label>
             <div class="checkbox-group">
-              <label><input type="radio" name="agobio" value="Todos los días" required> Todos los días</label>
+              <label><input type="radio" name="agobio" value="Todos los días"> Todos los días</label>
               <label><input type="radio" name="agobio" value="Varias veces por semana"> Varias veces por semana</label>
               <label><input type="radio" name="agobio" value="Ocasionalmente"> Ocasionalmente</label>
               <label><input type="radio" name="agobio" value="Casi nunca"> Casi nunca</label>
@@ -208,19 +207,19 @@
           </div>
         
           <div class="question-group">
-            <label>¿Qué herramientas usas para organizarte?<span style="color: red">*</span></label>
+            <label for="herramientas">¿Qué herramientas usas para organizarte?<span style="color: red">*</span></label>
             <div class="checkbox-group">
-              <label><input type="checkbox" name="herramientas" value="Agenda física" required> Agenda física</label>
-              <label><input type="checkbox" name="herramientas" value="Calendario digital"> Calendario digital</label>
-              <label><input type="checkbox" name="herramientas" value="Notion"> Notion</label>
-              <label><input type="checkbox" name="herramientas" value="Recordatorios"> Recordatorios del móvil</label>
-              <label><input type="checkbox" name="herramientas" value="Apps productividad"> Apps de productividad</label>
-              <label><input type="checkbox" name="herramientas" value="Ninguna"> No uso ninguna</label>
+              <label><input type="checkbox" name="herramientas" id="herramientas-agenda" value="Agenda física" autocomplete="off"> Agenda física</label>
+              <label><input type="checkbox" name="herramientas" id="herramientas-calendario" value="Calendario digital" autocomplete="off"> Calendario digital</label>
+              <label><input type="checkbox" name="herramientas" id="herramientas-notion" value="Notion" autocomplete="off"> Notion</label>
+              <label><input type="checkbox" name="herramientas" id="herramientas-recordatorios" value="Recordatorios" autocomplete="off"> Recordatorios del móvil</label>
+              <label><input type="checkbox" name="herramientas" id="herramientas-apps" value="Apps productividad" autocomplete="off"> Apps de productividad</label>
+              <label><input type="checkbox" name="herramientas" id="herramientas-ninguna" value="Ninguna" autocomplete="off"> No uso ninguna</label>
               <div class="otro-option">
                 <label>
-                  <input type="checkbox" name="herramientas" value="otro">
+                  <input type="checkbox" name="herramientas" id="herramientas-otro" value="otro" autocomplete="off">
                   Otro:
-                  <input type="text" name="herramientas_otro" class="otro-input" disabled>
+                  <input type="text" name="herramientas_otro" id="herramientas-otro-texto" class="otro-input" disabled autocomplete="off">
                 </label>
               </div>
             </div>
@@ -230,7 +229,7 @@
           <div class="question-group">
             <label>¿Qué problemas tienes con esas herramientas?<span style="color: red">*</span></label>
             <div class="checkbox-group">
-              <label><input type="checkbox" name="problemas" value="Olvido usarlas" required> Me olvido de usarlas</label>
+              <label><input type="checkbox" name="problemas" value="Olvido usarlas"> Me olvido de usarlas</label>
               <label><input type="checkbox" name="problemas" value="Molesto actualizar"> Me resulta molesto actualizar</label>
               <label><input type="checkbox" name="problemas" value="No motivan"> No me motivan</label>
               <label><input type="checkbox" name="problemas" value="No entienden voz"> No entienden voz</label>
@@ -247,8 +246,8 @@
           </div>
         
           <div class="question-group">
-            <label>¿Qué tareas o hábitos te cuesta mantener?<span style="color: red">*</span></label>
-            <textarea name="habitos_cuestan" rows="3" placeholder="Escribe aquí..." required></textarea>
+            <label for="habitos_cuestan">¿Qué tareas o hábitos te cuesta mantener?<span style="color: red">*</span></label>
+            <textarea name="habitos_cuestan" id="habitos_cuestan" rows="3" placeholder="Escribe aquí..." required autocomplete="off"></textarea>
             <div class="required-error">* Esta pregunta es obligatoria</div>
           </div>
         
@@ -265,7 +264,7 @@
           <div class="question-group">
             <label>¿Qué te parecería un asistente que organizara tus tareas?<span style="color: red">*</span></label>
             <div class="checkbox-group">
-              <label><input type="radio" name="asistente_opinion" value="Me encantaría" required> Me encantaría</label>
+              <label><input type="radio" name="asistente_opinion" value="Me encantaría"> Me encantaría</label>
               <label><input type="radio" name="asistente_opinion" value="Lo usaría si es fácil"> Lo usaría si es fácil</label>
               <label><input type="radio" name="asistente_opinion" value="Dudas"> Me genera dudas</label>
               <label><input type="radio" name="asistente_opinion" value="No interesa"> No me interesa</label>
@@ -276,7 +275,7 @@
           <div class="question-group">
             <label>¿Qué funciones te gustaría que tuviera?<span style="color: red">*</span></label>
             <div class="checkbox-group">
-              <label><input type="checkbox" name="funciones" value="Capturar por voz o texto" required> Capturar tareas por voz o texto</label>
+              <label><input type="checkbox" name="funciones" value="Capturar por voz o texto" > Capturar tareas por voz o texto</label>
               <label><input type="checkbox" name="funciones" value="Recomendar hábitos"> Recomendar hábitos</label>
               <label><input type="checkbox" name="funciones" value="Motivar"> Motivar a cumplir objetivos</label>
               <label><input type="checkbox" name="funciones" value="Detectar tareas"> Detectar tareas automáticamente</label>
@@ -296,7 +295,7 @@
           <div class="question-group">
             <label>¿Qué tipo de personalidad prefieres en el asistente?<span style="color: red">*</span></label>
             <div class="checkbox-group">
-              <label><input type="radio" name="personalidad" value="Cercano" required> Cercano y humano</label>
+              <label><input type="radio" name="personalidad" value="Cercano"> Cercano y humano</label>
               <label><input type="radio" name="personalidad" value="Neutral"> Neutral y profesional</label>
               <label><input type="radio" name="personalidad" value="Sin preferencia"> Sin preferencia</label>
             </div>
@@ -326,8 +325,10 @@
             <label><input type="radio" name="participacion" value="No"> No</label>
           </div>
         
-          <label>Correo para unirte a la beta (opcional):</label>
-          <input type="email" name="email" placeholder="tu@email.com">
+          <div class="question-group">
+            <label for="email">Correo para unirte a la beta (opcional):</label>
+            <input type="email" name="email" id="email" placeholder="tu@email.com" autocomplete="email">
+          </div>
         
           <div class="form-navigation">
             <button type="button" class="prev-btn">Volver</button>
