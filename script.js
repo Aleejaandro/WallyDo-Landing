@@ -238,55 +238,54 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Manejar el envío del formulario
-    form.addEventListener('submit', async function(e) {
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
         
         if (!validateStep(currentStep)) {
             return;
         }
         
-        const formData = getFormData();
-        // Reemplaza esta URL con la URL real de tu script de Google
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwvQsuxjmTHhk6lIEmfp02zdI8eOMFVvZUYoFgMUQ_RxH0-N4B8SbAFIz77T0pNpbMX/exec';
-        
-        try {
-            // Mostrar algún indicador de carga
-            const submitButton = document.querySelector('button[type="submit"]');
-            if (submitButton) {
-                submitButton.disabled = true;
-                submitButton.textContent = 'Enviando...';
-            }
-            
-            // Para pruebas, siempre mostramos el mensaje de agradecimiento
-            const thanksMessage = document.getElementById('thanks-message');
-            form.style.display = 'none';
-            thanksMessage.style.display = 'block';
-            
-            // Intentar enviar los datos (incluso con posibles errores de CORS)
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors', // Importante para evitar problemas de CORS
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            }).catch(error => {
-                console.error('Error:', error);
-                // También se podría guardar los datos localmente como backup
-                localStorage.setItem('formData', JSON.stringify(formData));
-            }).finally(() => {
-                if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.textContent = '¡Únete a la Beta!';
-                }
-            });
-        } catch (error) {
-            console.error('Error general:', error);
-            // A pesar del error, mostramos el mensaje de agradecimiento
-            const thanksMessage = document.getElementById('thanks-message');
-            form.style.display = 'none';
-            thanksMessage.style.display = 'block';
+        // Mostrar algún indicador de carga
+        const submitButton = document.querySelector('button[type="submit"]');
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Enviando...';
         }
+        
+        // Recopilar los datos del formulario
+        const formData = getFormData();
+        
+        // URL del Google Apps Script publicado como aplicación web
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzm2inGDocC8b7582kfY5n_fuN4AZMvwAThFKquj3RYWQzWtpA8kp-Qts9AQW6D0VDO/exec';
+        
+        // Guardar datos en localStorage como respaldo
+        localStorage.setItem('wallydo_form_data', JSON.stringify(formData));
+        localStorage.setItem('wallydo_form_submitted', new Date().toISOString());
+        
+        // Mostrar mensaje de gracias inmediatamente para mejor UX
+        const thanksMessage = document.getElementById('thanks-message');
+        form.style.display = 'none';
+        thanksMessage.style.display = 'block';
+        
+        // Enviar datos a Google Sheets
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        }).catch(error => {
+            console.error('Error al enviar datos:', error);
+        }).finally(() => {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = '¡Únete a la Beta!';
+            }
+        });
+        
+        // Scroll al mensaje de agradecimiento
+        thanksMessage.scrollIntoView({ behavior: 'smooth' });
     });
   
     // Navegación de los slides de descripción
