@@ -1,4 +1,4 @@
-![WallyDo](LOGO_NEGRO.png)
+![WallyDo](assets/logos/LOGO_NEGRO.png)
 
 # 🧠 WallyDo – Tu asistente personal inteligente
 
@@ -26,7 +26,7 @@ La landing de WallyDo tiene un doble objetivo:
 
 ## 🧪 ¿Cómo puedes participar?
 
-Puedes explorar la landing aquí 👉 [🔗 Enlace a la web (GitHub Pages)](https://tuusuario.github.io/wallydo)
+Puedes explorar la landing aquí 👉 [🔗 Enlace a la web (GitHub Pages)](https://aleejaandro.github.io/WallyDo-Web/)
 
 Y si te interesa formar parte de la evolución de WallyDo, **rellena el formulario integrado en la web**. Te llevará menos de 2 minutos y te dará acceso a:
 
@@ -77,7 +77,7 @@ A partir del feedback recogido y las pruebas de usuario, WallyDo evolucionará h
 ## 📬 Contacto
 
 Por ahora, puedes dejar tus sugerencias o ideas a través del formulario.  
-También puedes escribirme por [LinkedIn](www.linkedin.com/in/alejandrof-tech) o abrir un issue si tienes feedback técnico.
+También puedes escribirme por [LinkedIn](https://www.linkedin.com/in/alejandrof-tech/) o abrir un issue si tienes feedback técnico.
 
 ---
 
