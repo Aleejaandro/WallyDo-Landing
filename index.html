@@ -137,6 +137,15 @@
     
 
       <form id="feedback-form">
+        <div class="form-progress">
+          <div class="progress-bar">
+            <div class="progress-step active" data-step="1"></div>
+            <div class="progress-step" data-step="2"></div>
+            <div class="progress-step" data-step="3"></div>
+            <div class="progress-step" data-step="4"></div>
+          </div>
+        </div>
+
         <!-- Paso 1 -->
         <!-- PASO 1 -->
         <div class="form-step">
@@ -151,7 +160,6 @@
               <label><input type="radio" name="edad" id="edad-35-44" value="35–44" autocomplete="off"> 35–44</label>
               <label><input type="radio" name="edad" id="edad-45-54" value="45–54" autocomplete="off"> 45–54</label>
               <label><input type="radio" name="edad" id="edad-55-mas" value="55 o más" autocomplete="off"> 55 o más</label>
-              <div class="required-error">* Esta pregunta es obligatoria</div>
             </div>
             
           </div>
@@ -171,7 +179,6 @@
                   <input type="text" name="ocupacion_otro" id="ocupacion-otro-texto" class="otro-input" disabled autocomplete="off">
                 </label>
               </div>
-              <div class="required-error">* Esta pregunta es obligatoria</div>
             </div>
             
           </div>
@@ -182,12 +189,11 @@
               <label><input type="radio" name="organizacion" value="Sí"> Sí</label>
               <label><input type="radio" name="organizacion" value="A veces"> A veces</label>
               <label><input type="radio" name="organizacion" value="No"> No</label>
-              <div class="required-error">* Esta pregunta es obligatoria</div>
             </div>
             
           </div>
           <div class="form-navigation">
-            <button type="button" class="next-btn">Continuar</button>
+            <button type="button" class="next-btn right-align">Continuar</button>
           </div>
         </div>
         
@@ -203,7 +209,6 @@
               <label><input type="radio" name="agobio" value="Ocasionalmente"> Ocasionalmente</label>
               <label><input type="radio" name="agobio" value="Casi nunca"> Casi nunca</label>
             </div>
-            <div class="required-error">Esta pregunta es obligatoria</div>
           </div>
         
           <div class="question-group">
@@ -223,7 +228,6 @@
                 </label>
               </div>
             </div>
-            <div class="required-error">* Esta pregunta es obligatoria</div>
           </div>
         
           <div class="question-group">
@@ -242,13 +246,13 @@
                 </label>
               </div>
             </div>
-            <div class="required-error">* Esta pregunta es obligatoria</div>
+
           </div>
         
           <div class="question-group">
             <label for="habitos_cuestan">¿Qué tareas o hábitos te cuesta mantener?<span style="color: red">*</span></label>
             <textarea name="habitos_cuestan" id="habitos_cuestan" rows="3" placeholder="Escribe aquí..." required autocomplete="off"></textarea>
-            <div class="required-error">* Esta pregunta es obligatoria</div>
+
           </div>
         
           <div class="form-navigation">
@@ -269,7 +273,6 @@
               <label><input type="radio" name="asistente_opinion" value="Dudas"> Me genera dudas</label>
               <label><input type="radio" name="asistente_opinion" value="No interesa"> No me interesa</label>
             </div>
-            <div class="required-error">* Esta pregunta es obligatoria</div>
           </div>
         
           <div class="question-group">
@@ -289,7 +292,6 @@
                 </label>
               </div>
             </div>
-            <div class="required-error">* Esta pregunta es obligatoria</div>
           </div>
         
           <div class="question-group">
@@ -299,7 +301,6 @@
               <label><input type="radio" name="personalidad" value="Neutral"> Neutral y profesional</label>
               <label><input type="radio" name="personalidad" value="Sin preferencia"> Sin preferencia</label>
             </div>
-            <div class="required-error">* Esta pregunta es obligatoria</div>
           </div>
         
           <div class="form-navigation">
@@ -315,8 +316,7 @@
           <div class="question-group">
             <label>¿Qué te gustaría que tuviera el asistente?<span style="color: red">*</span></label>
             <textarea name="sugerencias" rows="3" placeholder="Escribe tu sugerencia..." required></textarea>
-            <div class="required-error">* Esta pregunta es obligatoria</div>
-          </div>
+            <div class="required-error">* Esta pregunta es obligatoria</div>          </div>
         
           <label>¿Te interesaría participar en las pruebas futuras?</label>
           <div class="checkbox-group">
@@ -384,7 +384,7 @@
     </div>
     
     <div class="footer-bottom">
-      <p>&copy; 2024 WallyDo. Todos los derechos reservados.</p>
+      <p>&copy; 2025 WallyDo. Todos los derechos reservados.</p>
       <div class="social-links">
         <a href="#" class="social-link">Twitter</a>
         <a href="#" class="social-link">LinkedIn</a>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WallyDo</title>
+    <link rel="stylesheet" href="style-light.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <div class="toolbar">
+        <div class="toolbar-logo">
+            <a href="#" id="logo-home-link">
+                <img src="assets/LOGO_NEGRO.png" alt="WallyDo Logo" class="toolbar-logo-img">
+            </a>
+        </div>
+        <div class="toolbar-nav">
+            <a href="#features" class="nav-link">Características</a>
+            <a href="#how-it-works" class="nav-link">Cómo Funciona</a>
+            <a href="#comparison" class="nav-link">Comparativa</a>
+        </div>
+        <div class="toolbar-actions">
+            <a href="form-light.html" class="btn-beta">Formulario</a>
+        </div>
+    </div>
+
+    <!-- Sección Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo">
+                <div class="logo-container">
+                    <img src="assets/wallydo_logogris.svg" alt="WallyDo Logo" class="logo-base">
+                    <div class="logo-glow"></div>
+                </div>
+                <h1 class="title">
+                    <span class="letters">W</span>
+                    <span class="letters">a</span>
+                    <span class="letters">l</span>
+                    <span class="letters">l</span>
+                    <span class="letters">y</span>
+                    <span class="letters">D</span>
+                    <span class="letters">o</span>
+                </h1>
+            </div>
+            <p class="description">
+                Convierte tus ideas en <span class="highlight-blue">acciones</span> y transforma tus pensamientos en <span class="highlight-blue"><span class="word-highlight">tareas</span></span>, <span class="highlight-blue"><span class="word-highlight">recordatorios</span></span> y <span class="highlight-blue"><span class="word-highlight">hábitos</span></span>.
+            </p>
+        </div>
+        <div class="scroll-indicator" style="cursor: pointer;">
+            <p>Desliza para descubrir</p>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- Sección de características -->
+    <section id="features" class="features-section" style="background-color: #26b2dd;">
+        <div class="features-content" style="background-color: #70dff0;">
+            <p class="features-intro">
+                WallyDo no es solo una app. Es un compañero inteligente que te entiende, te recuerda lo importante y te motiva a lograr tus objetivos personales.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <img src="assets/brain.svg" alt="Entiende tus hábitos" class="feature-icon">
+                    <h3 class="feature-title">Entiende tus hábitos</h3>
+                    <p class="feature-description">
+                        <span class="highlight-blue">Aprende</span> de tus rutinas y preferencias para ofrecerte una experiencia <span class="highlight-blue">personalizada</span> y adaptada a tu estilo de vida.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <img src="assets/arrange.svg" alt="Organiza por ti" class="feature-icon">
+                    <h3 class="feature-title">Organiza por ti</h3>
+                    <p class="feature-description">
+                        <span class="highlight-blue">Gestiona</span> tus tareas y recordatorios de manera <span class="highlight-blue">inteligente</span>, priorizando lo que realmente importa en cada momento.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <img src="assets/chat-circle.svg" alt="Interactúa por voz o texto" class="feature-icon">
+                    <h3 class="feature-title">Interactúa por voz o texto</h3>
+                    <p class="feature-description">
+                        <span class="highlight-blue">Comunícate</span> con WallyDo de la manera que prefieras, ya sea hablando o escribiendo, siempre obtendrás una respuesta <span class="highlight-blue">intuitiva</span>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Cómo funciona -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="how-it-works-content">
+            <h2 class="how-it-works-title">Cómo funciona WallyDo</h2>
+            <p class="hover-legend">🖱️ Pasa el cursor sobre cada etapa para descubrir más</p>
+            <div class="timeline-container">
+                <div class="timeline">
+                    <div class="timeline-step top" data-aos="fade-right" data-aos-delay="100" data-aos-duration="800">
+                        <div class="timeline-connect"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="step-content">
+                            <span class="step-icon"><img src="assets/lightbulb.svg" alt="Lightbulb" class="step-icon-img"></span>
+                            <h3 class="step-title">Le Dices lo que Necesitas</h3>
+                            <p class="step-description">
+                                Simplemente cuéntale a WallyDo lo que necesitas hacer, ya sea por voz o texto.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-step bottom" data-aos="fade-left" data-aos-delay="300" data-aos-duration="800">
+                        <div class="step-content">
+                            <span class="step-icon"><img src="assets/calendar-dots.svg" alt="Calendar" class="step-icon-img"></span>
+                            <h4 class="step-title"> Crea Tareas y Recordatorios</h4>
+                            <p class="step-description">WallyDo organiza automáticamente tus tareas y establece recordatorios inteligentes.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-connect"></div>
+                    </div>
+                    
+                    <div class="timeline-step top" data-aos="fade-right" data-aos-delay="500" data-aos-duration="800">
+                        <div class="step-content">
+                            <span class="step-icon"><img src="assets/aprende.png" alt="Brain" class="step-icon-img"></span>
+                            <h4 class="step-title">Aprende de Ti</h4>
+                            <p class="step-description">Con el tiempo, WallyDo aprende de tus hábitos para ofrecerte una experiencia personalizada.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-connect"></div>
+                    </div>
+                    
+                    <div class="timeline-step bottom" data-aos="fade-left" data-aos-delay="700" data-aos-duration="800">
+                        <div class="step-content">
+                            <span class="step-icon"><img src="assets/barbell.svg" alt="Barbell" class="step-icon-img"></span>
+                            <h4 class="step-title">Te propone hábitos</h4>
+                            <p class="step-description"> Basándose en tus objetivos, recibe sugerencias personalizadas para mejorar tus rutinas.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-connect"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Comparativa -->
+    <section id="comparison" class="comparison-section">
+        <div class="comparison-content">
+            <h2 class="comparison-title">¿Por qué WallyDo y no otra app?</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card wallydo" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="800">
+                    <img src="assets/wallydo_logogris.svg" alt="WallyDo" class="comparison-logo">
+                    <h3 class="comparison-name">WallyDo</h3>
+                    <ul class="feature-list">
+                        <li class="feature-item wallydo-exclusive">Asistente IA personalizado</li>
+                        <li class="feature-item wallydo-exclusive">Aprendizaje automático</li>
+                        <li class="feature-item wallydo-exclusive">Sugerencias de hábitos</li>
+                        <li class="feature-item wallydo-exclusive">Recordatorios inteligentes</li>
+                        <li class="feature-item wallydo-exclusive">Adaptación a tu estilo de vida</li>
+                    </ul>
+                </div>
+                <div class="comparison-card" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="800">
+                    <img src="assets/google-calendar.png" alt="Google Calendar" class="comparison-logo">
+                    <h3 class="comparison-name">Google Calendar</h3>
+                    <ul class="feature-list">
+                        <li class="feature-item">Calendario básico</li>
+                        <li class="feature-item">Recordatorios simples</li>
+                        <li class="feature-item missing">Sin IA personalizada</li>
+                        <li class="feature-item missing">Sin sugerencias de hábitos</li>
+                        <li class="feature-item missing">Sin aprendizaje automático</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card" data-aos="zoom-in" data-aos-delay="500" data-aos-duration="800">
+                    <img src="assets/todoist.png" alt="Todoist" class="comparison-logo">
+                    <h3 class="comparison-name">Todoist</h3>
+                    <ul class="feature-list">
+                        <li class="feature-item">Gestión de tareas</li>
+                        <li class="feature-item">Priorización básica</li>
+                        <li class="feature-item missing">IA limitada</li>
+                        <li class="feature-item missing">Sin aprendizaje de hábitos</li>
+                        <li class="feature-item missing">Sin sugerencias personalizadas</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card" data-aos="zoom-in" data-aos-delay="700" data-aos-duration="800">
+                    <img src="assets/asana.png" alt="Asana" class="comparison-logo">
+                    <h3 class="comparison-name">Asana</h3>
+                    <ul class="feature-list">
+                        <li class="feature-item">Gestión de proyectos</li>
+                        <li class="feature-item">Colaboración en equipo</li>
+                        <li class="feature-item missing">Sin asistente IA</li>
+                        <li class="feature-item missing">Sin recordatorios inteligentes</li>
+                        <li class="feature-item missing">Sin seguimiento de hábitos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección CTA -->
+    <section class="cta-form" data-aos="fade-up" data-aos-duration="1000">
+        <div class="cta-content">
+            <h2 class="cta-title">¿Te gustaría ayudarnos a construir el futuro de la organización personal?</h2>
+            <p class="cta-description">
+                Haz historia con nosotros.<br>
+                WallyDo está naciendo… y tú puedes ser parte de su evolución.<br>
+                Tu experiencia nos guía.<br><br> Participa dejando tu huella.
+                <img src="assets/paw-print.svg" alt="Paw Print Icon" class="cta-paw-icon">
+            </p>
+            <a href="form-light.html" class="btn-principal">Quiero participar</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+           
+            <footer class="footer-fantasy">
+                <div class="footer-inner">
+                  <img src="assets/wallydo_logogris.svg" alt="WallyDo Logo Gris" class="footer-logo-fantasy">
+                  <p class="footer-quote">"Los grandes hábitos comienzan con pequeñas decisiones."</p>
+                  <p class="footer-cta">
+                    Gracias por confiar en WallyDo 
+                    <img src="assets/handshake.svg" alt="Handshake Icon" class="footer-cta-logo">
+                  </p>
+                  <p class="footer-copy">© 2025 WallyDo. Todos los derechos reservados.</p>
+                </div>
+              </footer>
+           
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar AOS para animaciones al hacer scroll
+            AOS.init({
+                once: true,  // Las animaciones solo ocurren una vez
+                offset: 100, // Comienza 100px antes de que el elemento sea visible
+                mirror: false // No repite la animación al hacer scroll hacia arriba
+            });
+            
+            // Animación original del título y descripción
+            const descriptionP = document.querySelector('.description');
+            const highlightBlue = document.querySelectorAll('.description .highlight-blue');
+            const wordHighlights = document.querySelectorAll('.description .word-highlight');
+
+            // Animación de las letras del título y descripción
+            anime.timeline({loop: false})
+            .add({ // 1. Animar letras título (aprox 0ms - 2300ms)
+                targets: '.title .letters',
+                translateY: [50,0],
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 100 * i
+            })
+            .add({ // 2. Animar párrafo descripción (INCLUYE "acciones") (aprox 1500ms - 2500ms)
+                targets: descriptionP,
+                translateY: [20, 0],
+                opacity: [0, 1],
+                easing: "easeOutExpo",
+                duration: 1000,
+            }, 1500) // Inicia a los 1500ms
+            .add({ // 4. Animar "tareas" (aprox 2600ms - 3400ms)
+                targets: wordHighlights[0],
+                translateY: [15, 0],
+                opacity: [0, 1],
+                easing: "easeOutExpo",
+                duration: 800,
+            }, 2600) // Inicia a los 2600ms
+            .add({ // 5. Animar "recordatorios" (aprox 3900ms - 4700ms)
+                targets: wordHighlights[1],
+                translateY: [15, 0],
+                opacity: [0, 1],
+                easing: "easeOutExpo",
+                duration: 800,
+            }, 3900) // Inicia a los 3900ms (3400ms + 500ms delay)
+            .add({ // 6. Animar "hábitos" (aprox 5200ms - 6000ms)
+                targets: wordHighlights[2],
+                translateY: [15, 0],
+                opacity: [0, 1],
+                easing: "easeOutExpo",
+                duration: 800,
+            }, 5200); // Inicia a los 5200ms (4700ms + 500ms delay)
+
+            // --- Inicio: Frase aleatoria para el footer ---
+            const footerQuotes = [
+                "Los grandes hábitos comienzan con pequeñas decisiones.",
+                "El orden es libertad.",
+                "Una mente organizada, una vida tranquila.",
+                "Un paso cada día, hacia tu mejor versión.",
+                "La clave no es priorizar lo que está en tu agenda, sino agendar tus prioridades.",
+                "Pequeños hábitos, grandes resultados.",
+                "Organízate hoy, disfruta mañana.",
+                "Tu futuro se crea por lo que haces hoy, no mañana."
+            ];
+            const quoteElement = document.querySelector('.footer-quote');
+            if (quoteElement) {
+                const randomIndex = Math.floor(Math.random() * footerQuotes.length);
+                quoteElement.textContent = `"${footerQuotes[randomIndex]}"`;
+            }
+            // --- Fin: Frase aleatoria para el footer ---
+        });
+    </script>
+</body>
+</html> 

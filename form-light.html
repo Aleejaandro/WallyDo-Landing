@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WallyDo - Formulario Beta</title>
+    <link rel="stylesheet" href="style-light.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Estilos CSS movidos a style-light.css -->
+</head>
+<body class="form-page">
+    <div class="toolbar">
+        <div class="toolbar-logo">
+            <a href="index-light.html" id="logo-home-link">
+                <img src="assets/LOGO_NEGRO.png" alt="WallyDo Logo">
+            </a>
+        </div>
+        <div class="toolbar-nav">
+            <a href="index-light.html#features" class="nav-link">Características</a>
+            <a href="index-light.html#how-it-works" class="nav-link">Cómo Funciona</a>
+            <a href="index-light.html#comparison" class="nav-link">Comparativa</a>
+        </div>
+        <div class="toolbar-actions">
+            <a href="index-light.html" class="btn-beta">Volver</a>
+        </div>
+    </div>
+
+    <section class="form-section">
+        <div class="form-container">
+            <form id="feedback-form">
+                <div class="form-progress">
+                    <div class="progress-bar">
+                        <div class="progress-step active" data-step="1"></div>
+                        <div class="progress-step" data-step="2"></div>
+                        <div class="progress-step" data-step="3"></div>
+                        <div class="progress-step" data-step="4"></div>
+                    </div>
+                </div>
+
+                <!-- PASO 1 -->
+                <div class="form-step active">
+                    <section class="form-intro card-highlight">
+                      <div class="card-icon">
+                        <img src="assets/star.svg" alt="Estrella" class="icon-svg">
+                      </div>
+                      <h2>Tu opinión nos ayuda a construir algo único</h2>
+                      <p>
+                        WallyDo no está siendo creado solo por nosotros... también por ti.
+                        Cada respuesta que compartes en este formulario nos acerca más a diseñar un asistente inteligente que realmente entienda tu día a día.
+                        <br><br>
+                        Como agradecimiento, recibirás acceso anticipado a las próximas novedades de WallyDo, promociones y beneficios exclusivos solo para nuestra comunidad.
+                        <br><br>
+                        Este formulario es el primer paso. ¡Gracias por formar parte del cambio!
+                      </p>
+                    </section>
+                
+                    <h3>Perfil del Participante</h3>
+                  
+                    <div class="question-group">
+                        <label>Edad: <span style="color: red">*</span></label>
+                        <div class="checkbox-group">
+                            <label><input type="radio" name="edad" id="edad-menos-18" value="Menos de 18" autocomplete="off"> Menos de 18</label>
+                            <label><input type="radio" name="edad" id="edad-18-24" value="18–24" autocomplete="off"> 18–24</label>
+                            <label><input type="radio" name="edad" id="edad-25-34" value="25–34" autocomplete="off"> 25–34</label>
+                            <label><input type="radio" name="edad" id="edad-35-44" value="35–44" autocomplete="off"> 35–44</label>
+                            <label><input type="radio" name="edad" id="edad-45-54" value="45–54" autocomplete="off"> 45–54</label>
+                            <label><input type="radio" name="edad" id="edad-55-mas" value="55 o más" autocomplete="off"> 55 o más</label>
+                        </div>
+                        <div class="required-error">* Esta pregunta es obligatoria</div>
+                    </div>
+                  
+                    <div class="question-group">
+                        <label>Ocupación actual: <span style="color: red">*</span></label>
+                        <div class="checkbox-group">
+                            <label><input type="radio" name="ocupacion" id="ocupacion-estudiante" value="Estudiante" autocomplete="off"> Estudiante</label>
+                            <label><input type="radio" name="ocupacion" id="ocupacion-empleado" value="Empleado" autocomplete="off"> Empleado/a por cuenta ajena</label>
+                            <label><input type="radio" name="ocupacion" id="ocupacion-freelance" value="Freelance" autocomplete="off"> Freelance / Autónomo/a</label>
+                            <label><input type="radio" name="ocupacion" id="ocupacion-empresario" value="Empresario" autocomplete="off"> Empresario/a</label>
+                            <label><input type="radio" name="ocupacion" id="ocupacion-desempleado" value="Desempleado" autocomplete="off"> Desempleado/a</label>
+                            <div class="otro-option">
+                                <label>
+                                    <input type="radio" name="ocupacion" id="ocupacion-otro" value="otro" autocomplete="off">
+                                    Otro:
+                                    <input type="text" name="ocupacion_otro" id="ocupacion-otro-texto" class="otro-input" disabled autocomplete="off">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="required-error">* Esta pregunta es obligatoria</div>
+                    </div>
+                  
+                    <div class="question-group">
+                        <label>¿Te consideras una persona organizada? <span style="color: red">*</span></label>
+                        <div class="checkbox-group">
+                            <label><input type="radio" name="organizacion" value="Sí"> Sí</label>
+                            <label><input type="radio" name="organizacion" value="A veces"> A veces</label>
+                            <label><input type="radio" name="organizacion" value="No"> No</label>
+                        </div>
+                        <div class="required-error">* Esta pregunta es obligatoria</div>
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="next-btn right-align">Continuar</button>
+                    </div>
+                </div>
+                
+                <!-- PASO 2 -->
+                <div class="form-step">
+                    <h3>Hábitos y Frustraciones Actuales</h3>
+                  
+                    <div class="question-group">
+                        <label>¿Con qué frecuencia te sientes agobiado/a por tus tareas? <span style="color: red">*</span></label>
+                        <div class="checkbox-group">
+                            <label><input type="radio" name="agobio" value="Todos los días"> Todos los días</label>
+                            <label><input type="radio" name="agobio" value="Varias veces por semana"> Varias veces por semana</label>
+                            <label><input type="radio" name="agobio" value="Ocasionalmente"> Ocasionalmente</label>
+                            <label><input type="radio" name="agobio" value="Casi nunca"> Casi nunca</label>
+                        </div>
+                        <div class="required-error">* Esta pregunta es obligatoria</div>
+                    </div>
+                  
+                    <div class="question-group">
+                        <label for="herramientas">¿Qué herramientas usas para organizarte?<span style="color: red">*</span></label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="herramientas" id="herramientas-agenda" value="Agenda física"> Agenda física</label>
+                            <label><input type="checkbox" name="herramientas" id="herramientas-calendario" value="Calendario digital" "> Calendario digital</label>
+                            <label><input type="checkbox" name="herramientas" id="herramientas-notion" value="Notion"> Notion</label>
+                            <label><input type="checkbox" name="herramientas" id="herramientas-recordatorios" value="Recordatorios" > Recordatorios del móvil</label>
+                            <label><input type="checkbox" name="herramientas" id="herramientas-apps" value="Apps productividad" > Apps de productividad</label>
+                            <label><input type="checkbox" name="herramientas" id="herramientas-ninguna" value="Ninguna" > No uso ninguna</label>
+                            <div class="otro-option">
+                                <label>
+                                    <input type="checkbox" name="herramientas" id="herramientas-otro" value="otro" autocomplete="off">
+                                    Otro:
+                                    <input type="text" name="herramientas_otro" id="herramientas-otro-texto" class="otro-input" disabled autocomplete="off">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="required-error">* Esta pregunta es obligatoria</div>
+                    </div>
+                  
+                    <div class="question-group">
+                        <label>¿Qué problemas tienes con esas herramientas?<span style="color: red">*</span></label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="problemas" value="Olvido usarlas"> Me olvido de usarlas</label>
+                            <label><input type="checkbox" name="problemas" value="Molesto actualizar"> Me resulta molesto actualizar</label>
+                            <label><input type="checkbox" name="problemas" value="No motivan"> No me motivan</label>
+                            <label><input type="checkbox" name="problemas" value="No entienden voz"> No entienden voz</label>
+                            <label><input type="checkbox" name="problemas" value="No se adaptan"> No se adaptan a mi estilo de vida</label>
+                            <div class="otro-option">
+                                <label>
+                                    <input type="checkbox" name="problemas" value="otro">
+                                    Otro:
+                                    <input type="text" name="problemas_otro" class="otro-input" disabled>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="required-error">* Esta pregunta es obligatoria</div>
+                    </div>
+                  
+                    <div class="question-group">
+                        <label for="habitos_cuestan">¿Qué tareas o hábitos te cuesta mantener?<span style="color: red">*</span></label>
+                        <textarea name="habitos_cuestan" id="habitos_cuestan" rows="3" placeholder="Escribe aquí..." required autocomplete="off"></textarea>
+                        <div class="required-error">* Esta pregunta es obligatoria</div>
+                    </div>
+                  
+                    <div class="form-navigation">
+                        <button type="button" class="prev-btn">Volver</button>
+                        <button type="button" class="next-btn">Continuar</button>
+                    </div>
+                </div>
+                
+                <!-- PASO 3 -->
+                <div class="form-step">
+                    <h3>Reacción ante la Solución Propuesta</h3>
+                  
+                    <div class="question-group">
+                        <label>¿Qué te parecería un asistente que organizara tus tareas?<span style="color: red">*</span></label>
+                        <div class="checkbox-group">
+                            <label><input type="radio" name="asistente_opinion" value="Me encantaría"> Me encantaría</label>
+                            <label><input type="radio" name="asistente_opinion" value="Lo usaría si es fácil"> Lo usaría si es fácil</label>
+                            <label><input type="radio" name="asistente_opinion" value="Dudas"> Me genera dudas</label>
+                            <label><input type="radio" name="asistente_opinion" value="No interesa"> No me interesa</label>
+                        </div>
+                        <div class="required-error">* Esta pregunta es obligatoria</div>
+                    </div>
+                  
+                    <div class="question-group">
+                        <label>¿Qué funciones te gustaría que tuviera?<span style="color: red">*</span></label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="funciones" value="Capturar por voz o texto" > Capturar tareas por voz o texto</label>
+                            <label><input type="checkbox" name="funciones" value="Recomendar hábitos"> Recomendar hábitos</label>
+                            <label><input type="checkbox" name="funciones" value="Motivar"> Motivar a cumplir objetivos</label>
+                            <label><input type="checkbox" name="funciones" value="Detectar tareas"> Detectar tareas automáticamente</label>
+                            <label><input type="checkbox" name="funciones" value="Gestionar calendario"> Gestionar calendario</label>
+                            <label><input type="checkbox" name="funciones" value="Sugerir pausas"> Sugerir pausas y descansos</label>
+                            <div class="otro-option">
+                                <label>
+                                    <input type="checkbox" name="funciones" value="otro">
+                                    Otro:
+                                    <input type="text" name="funciones_otro" class="otro-input" disabled>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="required-error">* Esta pregunta es obligatoria</div>
+                    </div>
+                  
+                    <div class="question-group">
+                        <label>¿Qué tipo de personalidad prefieres en el asistente?<span style="color: red">*</span></label>
+                        <div class="checkbox-group">
+                            <label><input type="radio" name="personalidad" value="Cercano"> Cercano y humano</label>
+                            <label><input type="radio" name="personalidad" value="Neutral"> Neutral y profesional</label>
+                            <label><input type="radio" name="personalidad" value="Sin preferencia"> Sin preferencia</label>
+                        </div>
+                        <div class="required-error">* Esta pregunta es obligatoria</div>
+                    </div>
+                  
+                    <div class="form-navigation">
+                        <button type="button" class="prev-btn">Volver</button>
+                        <button type="button" class="next-btn">Continuar</button>
+                    </div>
+                </div>
+                
+                <!-- PASO 4 -->
+                <div class="form-step">
+                    <h3>Participación Futura</h3>
+                  
+                    <div class="question-group">
+                        <label>¿Qué te gustaría que tuviera el asistente?<span style="color: red">*</span></label>
+                        <textarea name="sugerencias" rows="3" placeholder="Escribe tu sugerencia..." required></textarea>
+                        <div class="required-error">* Esta pregunta es obligatoria</div>
+                    </div>
+                    
+                    <div class="question-group">
+                        <label for="frase_usuario">¿Qué frase le dirías a WallyDo para ayudarte hoy?<span style="color: red">*</span></label>
+                        <textarea name="frase_usuario" rows="2" placeholder="Ejemplo: Recuérdame llamar a Ana mañana" required></textarea>
+                        <div class="required-error">* Esta pregunta es obligatoria</div>
+                    </div>
+                  
+                    <div class="question-group">
+                        <label>¿Te interesaría participar en las pruebas futuras?</label>
+                        <div class="checkbox-group">
+                            <label><input type="radio" name="participacion" value="Sí"> Sí, encantado/a</label>
+                            <label><input type="radio" name="participacion" value="Quizás"> Quizás más adelante</label>
+                            <label><input type="radio" name="participacion" value="No"> No</label>
+                        </div>
+                    </div>
+                  
+                    <div class="question-group">
+                        <label for="email">Correo para unirte a la beta (opcional):</label>
+                        <input type="email" name="email" id="email" placeholder="tu@email.com" autocomplete="email">
+                        <p style="font-size: 0.95rem; color: #888;">
+                          📨 Recibirás los adelantos y beneficios en el correo que indiques al final del formulario.
+                        </p>
+                    </div>
+                  
+                    <div class="form-navigation">
+                        <button type="button" class="prev-btn">Volver</button>
+                        <button type="submit">¡Únete a WallyDo!</button>
+                    </div>
+                </div>
+                
+                <div class="thanks" id="thanks-message">
+                    <div class="thanks-content">
+                        <img src="assets/gift.svg" alt="Thank you" class="thanks-icon">
+                        <h3>¡Gracias por rellenar el formulario!</h3>
+                        <p>Tu feedback es muy valioso para nosotros. Estás ayudando a construir el futuro de WallyDo 💜</p>
+                        <p class="thanks-note">Te contactaremos pronto con más información sobre el acceso a la beta.</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-fantasy">
+        <div class="footer-inner">
+          <img src="assets/wallydo_logogris.svg" alt="WallyDo Logo Gris" class="footer-logo-fantasy">
+          <p class="footer-quote">"Los grandes hábitos comienzan con pequeñas decisiones."</p> <!-- Placeholder, se actualizará con JS -->
+          <p class="footer-cta">
+            Gracias por confiar en WallyDo 
+            <img src="assets/handshake.svg" alt="Handshake Icon" class="footer-cta-logo">
+          </p>
+          <p class="footer-copy">© 2025 WallyDo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <!-- Añadir script para la frase aleatoria del footer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Inicio: Frase aleatoria para el footer ---
+            const footerQuotes = [
+                "Los grandes hábitos comienzan con pequeñas decisiones.",
+                "El orden es libertad.",
+                "Una mente organizada, una vida tranquila.",
+                "Un paso cada día, hacia tu mejor versión.",
+                "La clave no es priorizar lo que está en tu agenda, sino agendar tus prioridades.",
+                "Pequeños hábitos, grandes resultados.",
+                "Organízate hoy, disfruta mañana.",
+                "Tu futuro se crea por lo que haces hoy, no mañana."
+            ];
+            const quoteElement = document.querySelector('.footer-quote');
+            if (quoteElement) {
+                const randomIndex = Math.floor(Math.random() * footerQuotes.length);
+                quoteElement.textContent = `"${footerQuotes[randomIndex]}"`;
+            }
+            // --- Fin: Frase aleatoria para el footer ---
+        });
+    </script>
+</body>
+</html>
