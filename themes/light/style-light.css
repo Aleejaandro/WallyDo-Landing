@@ -2,8 +2,8 @@
 body {
     margin: 0;
     padding: 0;
-    /* Set the fixed background image for the entire page */
-    background: url('assets/fondo-blanco1.png') center center / cover no-repeat fixed;
+    /* Ruta corregida (subir 2 niveles desde themes/light/) */
+    background: url('../../assets/Backgrounds/fondo-blanco1.png') center center / cover no-repeat fixed;
     font-family: 'Inter', sans-serif;
     position: relative;
     overflow-y: auto;
@@ -39,8 +39,9 @@ body {
     left: 0;
     width: 100%;
     height: 70px;
+    /* Ruta corregida */
     background: linear-gradient(to bottom,rgba(255, 255, 255, 0.98), rgba(133, 133, 133, 0.568) ),
-                url('assets/fondo-blanco1.png');
+                url('../../assets/Backgrounds/fondo-blanco1.png');
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     z-index: 1000;
@@ -1593,8 +1594,8 @@ body.form-page .toolbar {
     left: 0;
     width: 100%;
     height: 70px; */
-    background: linear-gradient(to bottom,rgba(255, 255, 255, 0.98), rgba(133, 133, 133, 0.568)),
-                url('assets/fondo-blanco1.png');
+    background: linear-gradient(to bottom,rgba(255, 255, 255, 0.98), rgba(133, 133, 133, 0.568) ),
+                url('../../assets/Backgrounds/fondo-blanco1.png');
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     /* box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
@@ -1867,7 +1868,7 @@ body.form-page .otro-input:focus {
 /* Footer en la página del formulario */
 body.form-page .footer {
     background: linear-gradient(to bottom,rgba(255, 255, 255, 0.98), rgba(133, 133, 133, 0.568)),
-                url('assets/fondo-blanco1.png');
+                url('../../assets/Backgrounds/fondo-blanco1.png');
     /* Resto de estilos del footer se mantienen */
 }
 

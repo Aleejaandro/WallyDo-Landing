@@ -341,7 +341,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Redirigir a la página principal después de unos segundos
                 setTimeout(() => {
                     console.log('Redirigiendo a la página principal');
-                    window.location.href = 'index-light.html';
+                    window.location.href = '../index.html';
                 }, 3500); // Tiempo suficiente para leer el mensaje
             }
 
