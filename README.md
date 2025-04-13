@@ -1,4 +1,4 @@
-![WallyDo](assets/Logos/LOGO_NEGRO.png)
+![WallyDo](assets/logos/LOGO_NEGRO.png)
 
 ---
 
