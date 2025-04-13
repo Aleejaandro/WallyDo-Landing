@@ -1,5 +1,7 @@
 ![WallyDo](assets/Logos/LOGO_NEGRO.png)
 
+---
+
 # 🧠 WallyDo – Tu asistente personal inteligente
 
 Bienvenido/a al repositorio oficial de **WallyDo**, una iniciativa que nace con una idea clara:  
