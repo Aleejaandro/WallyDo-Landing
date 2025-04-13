@@ -504,7 +504,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 if (isFormPage) {
                     // Si estamos en form-light.html, navegar a index-light.html
-                    window.location.href = "index-light.html";
+                    window.location.href = "index.html";
                 } else {
                     // Si estamos en la misma página, hacer scroll al inicio
                     window.scrollTo({

@@ -1,4 +1,4 @@
-![WallyDo](assets/logos/LOGO_NEGRO.png)
+![WallyDo](assets/Logos/LOGO_NEGRO.png)
 
 # 🧠 WallyDo – Tu asistente personal inteligente
 
