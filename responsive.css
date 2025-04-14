@@ -782,10 +782,12 @@
         scrollbar-width: none !important;
         -ms-overflow-style: none !important;
         gap: 15px !important;
-        padding: 20px 0 25px !important;
+        padding: 20px 7.5% 25px !important; /* Padding horizontal para centrar inicio/fin */
         scroll-behavior: smooth !important;
         position: relative !important;
-        margin: 0 -5px !important; /* Compensar padding del contenedor */
+        margin: 0 !important; /* Eliminar margen negativo */
+        box-sizing: border-box; /* Asegurar que padding se incluya en el ancho */
+        width: 100%; /* Ocupar todo el ancho */
     }
     
     /* Ocultar scrollbar para Chrome/Safari/Opera */
@@ -1532,5 +1534,89 @@
 
 .feature-card, .comparison-card {
     box-sizing: border-box; 
+}
+
+/* ===================================
+   Ajustes para pantallas de poca altura (< 700px)
+   =================================== */
+@media (max-height: 700px) {
+    .hero {
+        min-height: 0; /* Permitir que sea más pequeña */
+        height: auto; /* Ajustar altura al contenido */
+        padding-top: 60px; /* Espacio para la barra superior */
+        padding-bottom: 80px; /* Más espacio abajo para el indicador */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around; /* Distribuir espacio */
+    }
+
+    .hero-content {
+        margin-top: 15px; /* Reducir margen superior */
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centrar contenido verticalmente */
+    }
+
+    .logo-container {
+        width: 160px; /* Reducir tamaño logo */
+        height: 160px;
+        margin-bottom: 10px; /* Menos espacio bajo el logo */
+    }
+
+    .title {
+        font-size: 4rem; /* Reducir tamaño título */
+        margin-bottom: 10px; /* Menos espacio bajo el título */
+    }
+
+    .description {
+        font-size: 1rem; /* Reducir tamaño descripción */
+        line-height: 1.4; /* Ajustar interlineado */
+        max-width: 800px; /* Permitir más ancho horizontal */
+        margin: 0 auto; /* Centrar texto */
+    }
+
+    .scroll-indicator {
+        position: static; /* Quitar posicionamiento absoluto */
+        transform: none;
+        margin-top: 25px; /* Espacio sobre el indicador */
+        text-align: center;
+        width: 100%;
+        padding-bottom: 10px;
+    }
+
+    .scroll-indicator p {
+        display: none; /* Ocultar texto "Desliza para descubrir" */
+    }
+
+    .scroll-arrow {
+        font-size: 1.8rem; /* Ajustar tamaño flecha */
+        animation: bounce 2s infinite; /* Mantener animación */
+    }
+}
+
+/* Ajustes adicionales para alturas muy pequeñas (< 600px) */
+@media (max-height: 600px) {
+    .hero {
+        padding-top: 50px;
+        padding-bottom: 60px;
+    }
+
+    .logo-container {
+        width: 130px;
+        height: 130px;
+    }
+
+    .title {
+        font-size: 3.2rem;
+    }
+
+    .description {
+        font-size: 0.9rem;
+    }
+
+    .scroll-indicator {
+        margin-top: 15px;
+    }
 }
   

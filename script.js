@@ -767,7 +767,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 setTimeout(() => {
                     console.log('Redirigiendo a la página principal');
                     window.location.href = '../index.html';
-                }, 3500); // Tiempo suficiente para leer el mensaje
+                }, 5000); // Tiempo suficiente para leer el mensaje
             }
 
             // Enviar datos a Google Sheets
