@@ -63,7 +63,7 @@ body {
 .toolbar-logo a {
     display: flex;
     align-items: center;
-    height: 100%;
+    height: 35px;
     transition: transform 0.3s ease;
 }
 
@@ -610,6 +610,22 @@ body {
     z-index: 5;
 }
 
+/* Por defecto, mostrar la leyenda de escritorio y ocultar la móvil */
+.hover-legend-mobile {
+    display: none;
+}
+
+/* Estilos para los iconos en la leyenda */
+.hover-icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 5px;
+    /* Filtro para cambiar a color azul (#00ccff) */
+    filter: invert(65%) sepia(82%) saturate(4429%) hue-rotate(165deg) brightness(104%) contrast(101%);
+    outline: none !important;
+}
+
 .timeline-container {
     position: relative;
     width: 100%;
@@ -617,6 +633,9 @@ body {
     padding-top: 40px;
     padding-bottom: 0px;
     display: block;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* Timeline Styles */
@@ -690,8 +709,6 @@ body {
 .timeline-step.bottom .step-content {
     position: absolute;
     top: 110px;
-
-
 }
 
 .step-content:hover {
@@ -2004,4 +2021,28 @@ input[type="email"] {
     line-height: 1.5;
     margin: 0;
     word-wrap: break-word;
+}
+
+/* Evitar cuadro azul al pulsar en dispositivos táctiles */
+.step-icon, 
+.hover-icon,
+.step-content,
+.timeline-step,
+.mobile-popup,
+.popup-icon,
+.popup-close,
+a, button, 
+[role="button"],
+[tabindex="0"] {
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+}
+
+/* Asegurar que no hay focus outline en firefox y otros navegadores */
+*:focus {
+    outline: none !important;
+}
+
+*::-moz-focus-inner {
+    border: 0 !important;
 } 

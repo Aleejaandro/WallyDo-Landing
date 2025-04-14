@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WallyDo - Formulario Beta</title>
+    <title>WallyDo - Formulario</title>
     <link rel="stylesheet" href="../themes/light/style-light.css">
+    <link rel="stylesheet" href="../responsive.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Estilos CSS movidos a style-light.css -->
 </head>
@@ -15,6 +16,13 @@
                 <img src="../assets/logos/LOGO_NEGRO.png" alt="WallyDo Logo">
             </a>
         </div>
+        <!-- Botón Hamburguesa (visible en móvil) -->
+        <button class="hamburger" aria-label="Abrir menú">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+        <!-- Navegación Desktop (oculta en móvil) -->
         <div class="toolbar-nav">
             <a href="../index.html#features" class="nav-link">Características</a>
             <a href="../index.html#how-it-works" class="nav-link">Cómo Funciona</a>
@@ -23,6 +31,14 @@
         <div class="toolbar-actions">
             <a href="../index.html" class="btn-beta">Volver</a>
         </div>
+    </div>
+
+    <!-- Menú Móvil (inicialmente oculto) -->
+    <div class="mobile-menu">
+        <a href="../index.html#features" class="mobile-nav-link">Características</a>
+        <a href="../index.html#how-it-works" class="mobile-nav-link">Cómo Funciona</a>
+        <a href="../index.html#comparison" class="mobile-nav-link">Comparativa</a>
+        <!-- Botón "Volver" se mantiene visible en la barra superior -->
     </div>
 
     <section class="form-section">

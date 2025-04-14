@@ -1,0 +1,1536 @@
+/* Responsive Styles - SOLO PARA DISPOSITIVOS MÓVILES Y TABLETS */
+
+/* ===================================
+   BREAKPOINTS UTILIZADOS:
+   - Small devices (teléfonos, < 768px)
+   - Medium devices (tablets, 768px - 991px)
+   =================================== */
+
+/* ===================================
+   General Mobile Styles (<= 768px)
+   =================================== */
+   @media (max-width: 768px) {
+    /* Reset básico para móviles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+    html, body {
+        overflow-x: hidden; /* Prevenir scroll horizontal */
+        width: 100%;
+    }
+
+    body {
+        font-size: 90%; /* Slightly smaller base font */
+        -webkit-text-size-adjust: 100%; /* Prevent text scaling on orientation change */
+    }
+
+    section {
+        padding: 60px 15px; /* Reduce section padding */
+        min-height: auto !important; /* Allow sections to shrink */
+        overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    h1, .title {
+        font-size: 3.2rem; /* Reduce H1 size */
+        line-height: 1.2;
+    }
+
+    h2, .section-title, .how-it-works-title, .comparison-title, .cta-title {
+        font-size: 2rem; /* Reduce H2 size */
+        line-height: 1.3;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    h4 {
+        font-size: 1.1rem;
+    }
+
+    /* --- Toolbar / Navbar (Adaptativo) --- */
+    .toolbar {
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        display: flex; 
+        align-items: center;
+        justify-content: space-between; 
+        padding: 0 15px; /* Padding móvil consistente */
+        height: 60px; /* Altura fija móvil */
+        background-size: cover; /* Asegurar fondo */
+        box-sizing: border-box; /* Incluir padding en el ancho */
+    }
+
+    .toolbar-logo {
+        order: 1; 
+        margin-right: auto; /* Empujar todo lo demás a la derecha */
+        height: 35px; /* Aumentar altura logo móvil */
+        flex-shrink: 1; 
+        min-width: 50px; 
+    }
+    .toolbar-logo img {
+        height: 100%; /* Asegurar que la imagen llene el contenedor */
+        display: block;
+    }
+
+    .toolbar-nav {
+        display: none; 
+        order: 2; 
+    }
+
+    /* Específico para la página del formulario para sobrescribir sus estilos */
+    body.form-page .toolbar-nav {
+        display: none !important; /* Usar !important para asegurar que se aplica */
+    }
+
+    .toolbar-actions {
+        display: flex; /* Asegurar que sea visible */
+        align-items: center;
+        order: 2; /* Botón antes de hamburguesa */
+        margin-left: 10px; 
+        margin-right: 5px; 
+        flex-shrink: 0; 
+    }
+
+    .toolbar-actions .btn-beta {
+        display: inline-block; /* Hacer visible el botón de acción */
+        padding: 5px 12px; 
+        font-size: 0.75rem; 
+        line-height: normal;
+    }
+
+    /* Estilos Botón Hamburguesa (Revisados) */
+    .hamburger {
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        order: 3; /* Hamburguesa al final */
+        margin-left: 0; 
+        padding: 0 5px; 
+        height: 100%; 
+        flex-shrink: 0;
+        cursor: pointer;
+        background-color: transparent; /* Sin fondo */
+        border: 0; /* Sin borde */
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    .hamburger:focus {
+        outline: none; /* Quitar outline al enfocar */
+    }
+    
+    .hamburger-box {
+        width: 30px; 
+        height: 24px;
+        display: inline-block;
+        position: relative;
+    }
+    
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+        width: 30px;
+        height: 3px; 
+        background-color: #333;
+        border-radius: 4px;
+        position: absolute;
+        transition-property: transform;
+        transition-duration: 0.15s;
+        transition-timing-function: ease;
+    }
+    
+     .hamburger-inner {
+        display: block;
+        top: 50%;
+        margin-top: -2px; /* Centrar línea media (mitad de la altura) */
+    }
+    
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+        content: "";
+        display: block;
+    }
+    
+    .hamburger-inner::before {
+        top: -8px; 
+    }
+    
+    .hamburger-inner::after {
+        bottom: -8px;
+    }
+
+    /* Animación del botón hamburguesa */
+    .hamburger.is-active .hamburger-inner,
+    .hamburger.is-active .hamburger-inner::before,
+    .hamburger.is-active .hamburger-inner::after {
+        background-color: #00ccff; /* Color azul cuando está activo */
+    }
+    
+    .hamburger.is-active .hamburger-inner {
+        transform: rotate(45deg);
+        transition-delay: 0.12s;
+        transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    
+    .hamburger.is-active .hamburger-inner::before {
+        top: 0;
+        opacity: 0;
+        transition: top 0.075s ease, opacity 0.075s 0.12s ease;
+    }
+    
+    .hamburger.is-active .hamburger-inner::after {
+        bottom: 0;
+        transform: rotate(-90deg);
+        transition: bottom 0.075s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    /* --- Menú Móvil Desplegable (Estilo Navbar) --- */
+    .mobile-menu {
+        position: fixed;
+        top: 60px; 
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.97); /* Ligeramente más opaco */
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 15px 0; /* Ajustar padding vertical */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: translateY(-150%); 
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+        border-top: 1px solid rgba(0, 0, 0, 0.05); /* Línea superior sutil */
+    }
+    
+    .mobile-menu.is-active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .mobile-nav-link {
+        color: #333; /* Color texto navbar */
+        text-decoration: none;
+        font-size: 1.1rem; /* Tamaño legible */
+        font-weight: 500; /* Peso consistente */
+        padding: 14px 20px; /* Padding generoso */
+        display: block;
+        width: 90%; /* Ancho dentro del menú */
+        max-width: 300px; /* Ancho máximo */
+        text-align: center;
+        border-radius: 6px; /* Bordes suaves */
+        margin-bottom: 5px; /* Espacio entre links */
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    
+    .mobile-nav-link:hover, .mobile-nav-link:active {
+        background-color: rgba(0, 204, 255, 0.1); /* Fondo azul suave al pasar/tocar */
+        color: #007799; /* Azul más oscuro al pasar/tocar */
+    }
+    
+    .mobile-btn-beta {
+        display: none; /* Confirmar que el botón DENTRO del menú está oculto */
+    }
+
+    /* --- Hero Section (Mantener como Desktop) --- */
+    .hero {
+        min-height: 100vh;
+        height: 100vh;
+        padding-top: 70px; /* Espacio para navbar fijo */
+        justify-content: space-between;
+    }
+    
+    .hero-content {
+        margin-top: 50px; /* Empujar contenido un poco hacia abajo */
+        padding-bottom: 0;
+    }
+    
+    .scroll-indicator {
+        position: absolute; /* Volver a posicion absoluto */
+        bottom: 30px;
+        margin-top: 0;
+        transform: translateX(-50%);
+        left: 50%;
+    }
+    
+    /* Asegurarse que el título y descripción no se reduzcan demasiado si no se quiere */
+    .title { font-size: 5rem; } /* Revertir tamaño */
+    .description { font-size: 1.2rem; max-width: 800px;} /* Revertir tamaño */
+    .logo-container { width: 220px; height: 220px; } /* Revertir tamaño */
+
+    /* --- Modificaciones para la sección "Cómo funciona" en móvil --- */
+    /* Ocultar la leyenda de hover para escritorio y mostrar la de móvil */
+    .hover-legend-desktop {
+        display: none;
+    }
+    
+    .hover-legend-mobile {
+        display: block;
+        text-align: center;
+        margin-bottom: 30px; /* Aumentado de 20px a 30px para bajar la leyenda */
+        margin-top: 10px; /* Añadido margen superior */
+        font-size: 0.95rem;
+        color: rgba(0, 0, 0, 0.7);
+        padding: 0 20px;
+        line-height: 1.5;
+    }
+    
+    /* Estilos para los iconos en la leyenda */
+    .hover-icon {
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+        margin-right: 5px;
+        /* Filtro para cambiar a color azul (#00ccff) */
+        filter: invert(65%) sepia(82%) saturate(4429%) hue-rotate(165deg) brightness(104%) contrast(101%);
+        /* Eliminar outline al hacer clic */
+        outline: none !important;
+    }
+    
+    /* Evitar cuadro azul al pulsar en dispositivos táctiles */
+    .step-icon, 
+    .hover-icon,
+    .step-content,
+    .timeline-step,
+    .mobile-popup,
+    .popup-icon,
+    .popup-close,
+    .mobile-nav-link,
+    a, button, 
+    [role="button"],
+    [tabindex="0"] {
+        -webkit-tap-highlight-color: transparent !important;
+        outline: none !important;
+    }
+    
+    /* Asegurar que no hay focus outline en firefox y otros navegadores */
+    *:focus {
+        outline: none !important;
+    }
+    
+    *::-moz-focus-inner {
+        border: 0 !important;
+    }
+    
+    /* Ocultar elementos de timeline */
+    .timeline::before,
+    .timeline-connect,
+    .timeline-dot {
+        display: none !important;
+    }
+    
+    /* Mejorar el diseño de iconos en zigzag */
+    .timeline {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 25px 0 !important; /* Aumentado de 15px a 25px para más separación vertical */
+        width: 100% !important;
+        max-width: 500px !important;
+        margin: 10px auto 0 !important; /* Añadido margen superior */
+        position: relative !important;
+        padding: 15px 0 30px !important; /* Aumentado padding */
+        height: auto !important;
+        background: none !important;
+    }
+    
+    .timeline-container {
+        overflow: visible !important;
+        height: auto !important;
+        position: relative !important;
+        width: 100% !important;
+        padding: 0 15px !important;
+        margin-top: 0 !important; /* Asegurar sin margen superior */
+        background: none !important;
+    }
+    
+    /* Posicionamiento en zigzag */
+    .timeline-step {
+        position: relative !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        transform: none !important;
+        height: 90px !important;
+        z-index: 2 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: none !important;
+    }
+    
+    /* Patrón de zigzag */
+    .timeline-step:nth-child(1) {
+        transform: translateY(0) !important;
+    }
+    
+    .timeline-step:nth-child(2) {
+        transform: translateY(55px) !important; /* Aumentado de 45px a 55px */
+    }
+    
+    .timeline-step:nth-child(3) {
+        transform: translateY(0) !important;
+    }
+    
+    .timeline-step:nth-child(4) {
+        transform: translateY(55px) !important; /* Aumentado de 45px a 55px */
+    }
+    
+    /* Eliminar todos los elementos de fondo y conectores */
+    .timeline::before, 
+    .timeline::after,
+    .timeline-connect,
+    .timeline-dot,
+    .timeline-line,
+    .timeline-step::before,
+    .timeline-step::after {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
+    
+    /* Estilo más elegante para los círculos de iconos */
+    .step-content {
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        cursor: pointer !important;
+        position: static !important;
+        height: auto !important;
+        max-height: none !important;
+        width: auto !important;
+        transition: transform 0.3s ease !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    
+    .step-content:active {
+        transform: scale(0.95) !important;
+    }
+    
+    .step-icon {
+        position: static !important;
+        transform: none !important;
+        width: 70px !important;
+        height: 70px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: white !important;
+        border-radius: 50% !important;
+        box-shadow: 0 4px 15px rgba(0, 204, 255, 0.15) !important;
+        border: 2px solid rgba(0, 204, 255, 0.2) !important;
+        transition: all 0.3s ease !important;
+        z-index: 2 !important;
+    }
+    
+    /* Eliminar fondos o elementos borrosos */
+    .timeline-step, 
+    .timeline-step.top,
+    .timeline-step.bottom {
+        background: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    .timeline-step::before,
+    .timeline-step::after,
+    .timeline-connect,
+    .timeline-dot {
+        display: none !important;
+    }
+    
+    /* Deshabilitar efectos de AOS en móvil */
+    .timeline-step[data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .timeline-step.aos-animate {
+        background: none !important;
+        box-shadow: none !important;
+    }
+    
+    /* Asegurarse que no hay efectos residuales de AOS */
+    [data-aos^=fade][data-aos^=fade].aos-animate {
+        opacity: 1 !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: none !important;
+    }
+
+    .step-icon:hover, .step-icon:active {
+        transform: scale(1.05) !important;
+        box-shadow: 0 6px 20px rgba(0, 204, 255, 0.25) !important;
+        border-color: rgba(0, 204, 255, 0.4) !important;
+    }
+    
+    .step-icon img {
+        width: 55% !important;
+        height: auto !important;
+        max-height: none !important;
+        opacity: 1 !important;
+        transition: transform 0.3s ease !important;
+    }
+    
+    .step-content:hover .step-icon img {
+        transform: scale(1.1) !important;
+    }
+    
+    /* Ocultar títulos y descripciones en la vista principal */
+    .step-title, 
+    .step-description,
+    .step-content::after {
+        display: none !important;
+    }
+    
+    /* Estilo más elegante para la ventana emergente */
+    .mobile-popup {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) scale(0.9) !important;
+        width: 85% !important;
+        max-width: 340px !important;
+        background-color: white !important;
+        border-radius: 20px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+        z-index: 1000 !important;
+        padding: 28px 22px !important;
+        display: none !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        max-height: calc(80vh - 60px) !important; /* Ajuste para la barra superior */
+        overflow-y: auto !important;
+        opacity: 0 !important;
+        transition: all 0.3s ease-out !important;
+        text-align: center !important; /* Añadir alineación centrada para todo el contenido */
+    }
+    
+    .mobile-popup.active {
+        display: flex !important;
+        opacity: 1 !important;
+        transform: translate(-50%, -50%) scale(1) !important;
+    }
+    
+    .popup-close {
+        position: absolute !important;
+        top: 18px !important;
+        right: 18px !important;
+        width: 30px !important;
+        height: 30px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.8rem !important;
+        color: #aaa !important;
+        cursor: pointer !important;
+        z-index: 5 !important;
+        background: none !important;
+        border: none !important;
+        transition: all 0.3s ease !important;
+        transform-origin: center center !important;
+    }
+    
+    .popup-close:hover {
+        color: #666 !important;
+        transform: rotate(45deg) !important;
+    }
+    
+    .popup-icon {
+        width: 55px !important;
+        height: 55px !important;
+        margin-bottom: 20px !important;
+        background-color: rgba(0, 204, 255, 0.1) !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 12px !important;
+    }
+    
+    .popup-icon img {
+        width: 100% !important;
+        height: auto !important;
+    }
+    
+    .popup-title {
+        font-size: 1.4rem !important;
+        color: #00ccff !important;
+        margin-bottom: 16px !important;
+        font-weight: 600 !important;
+        width: 100% !important; /* Cambiar de 85% a 100% */
+        line-height: 1.3 !important;
+        display: block !important; /* Asegurar visualización */
+        text-align: center !important; /* Asegurar alineación centrada */
+        margin-left: auto !important; /* Centrar horizontalmente */
+        margin-right: auto !important; /* Centrar horizontalmente */
+    }
+    
+    .popup-description {
+        font-size: 1rem !important;
+        line-height: 1.6 !important;
+        color: #444 !important;
+        margin-bottom: 10px !important;
+        display: block !important; /* Asegurar visualización */
+        width: 100% !important;
+    }
+    
+    /* Overlay más suave para el fondo */
+    .popup-overlay {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background-color: rgba(0, 0, 0, 0.6) !important;
+        backdrop-filter: blur(3px) !important;
+        -webkit-backdrop-filter: blur(3px) !important;
+        z-index: 999 !important;
+        display: none !important;
+        opacity: 0 !important;
+        transition: opacity 0.3s ease !important;
+    }
+    
+    .popup-overlay.active {
+        display: block !important;
+        opacity: 1 !important;
+    }
+    
+    /* Ajustes para la sección general */
+    .how-it-works {
+        padding: 40px 15px 60px !important; /* Aumentado padding inferior para dar más espacio */
+        background-color: transparent !important;
+        overflow: visible !important;
+        position: relative !important;
+        min-height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Fondo igual al de desktop */
+    .how-it-works::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background: rgba(255, 255, 255, 0.92) !important; /* Mismo valor que en desktop */
+        z-index: 1 !important;
+    }
+    
+    .how-it-works-content {
+        padding: 10px 5px 20px !important; /* Aumentado padding inferior */
+        max-width: 800px !important;
+        margin: 0 auto !important;
+        overflow: visible !important;
+        height: auto !important;
+        position: relative !important;
+        z-index: 2 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+    
+    .how-it-works-title {
+        margin-bottom: 20px !important; /* Aumentado de 15px a 20px */
+        font-size: 1.9rem !important;
+        text-align: center !important;
+        color: #333 !important;
+        position: relative !important;
+        z-index: 10 !important;
+    }
+    
+    /* Etiquetas para los pasos (opcional) */
+    .timeline-step::after {
+        content: attr(data-step) !important;
+        position: absolute !important;
+        bottom: 5px !important;
+        font-size: 0.85rem !important;
+        color: rgba(0, 0, 0, 0.5) !important;
+        font-weight: 500 !important;
+    }
+    
+    /* Ajuste específico para tablets */
+    @media (min-width: 600px) and (max-width: 991px) {
+        .timeline {
+            max-width: 550px !important;
+            gap: 35px 0 !important; /* Aumentado de 25px a 35px */
+        }
+        
+        .step-icon {
+            width: 80px !important;
+            height: 80px !important;
+        }
+        
+        .timeline-step {
+            height: 110px !important; /* Aumentado de 100px a 110px */
+        }
+        
+        .timeline-step:nth-child(2),
+        .timeline-step:nth-child(4) {
+            transform: translateY(65px) !important; /* Aumentado de 55px a 65px */
+        }
+        
+        .mobile-popup {
+            max-width: 450px !important;
+            padding: 32px 28px !important;
+            align-items: center !important;
+            text-align: center !important;
+        }
+        
+        .popup-title {
+            font-size: 1.5rem !important;
+            width: 100% !important;
+            text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        
+        .popup-description {
+            font-size: 1.1rem !important;
+            text-align: center !important;
+        }
+        
+        .popup-icon {
+            width: 65px !important;
+            height: 65px !important;
+        }
+    }
+    
+    /* Para pantallas muy pequeñas */
+    @media (max-width: 359px) {
+        .timeline-step {
+            height: 80px !important;
+        }
+        
+        .step-icon {
+            width: 60px !important;
+            height: 60px !important;
+        }
+        
+        .timeline-step:nth-child(2),
+        .timeline-step:nth-child(4) {
+            transform: translateY(40px) !important;
+        }
+        
+        .mobile-popup {
+            width: 92% !important;
+            padding: 25px 18px !important;
+        }
+        
+        .popup-title {
+            font-size: 1.3rem !important;
+            width: 80% !important;
+        }
+    }
+
+    /* --- Ajuste Scroll Horizontal en Carruseles --- */
+    .features-grid,
+    .comparison-grid {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 20px;
+        overflow-clip-margin: content-box;
+        scroll-padding: 0 15px; 
+    }
+    
+    /* Hacer que el grid de características sea un carrusel horizontal en móvil */
+    .features-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+        gap: 20px;
+        padding-bottom: 10px;
+        scroll-behavior: smooth; /* Asegurar desplazamiento suave */
+    }
+    
+    /* Estilos para el carrusel de comparativa (nuevo) */
+    .comparison-grid {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        gap: 15px !important;
+        padding: 20px 0 25px !important;
+        scroll-behavior: smooth !important;
+        position: relative !important;
+        margin: 0 -5px !important; /* Compensar padding del contenedor */
+    }
+    
+    /* Ocultar scrollbar para Chrome/Safari/Opera */
+    .comparison-grid::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    .comparison-card {
+        flex: 0 0 85% !important;
+        scroll-snap-align: center !important;
+        min-width: 250px !important;
+        margin-right: 0 !important;
+        position: relative !important;
+        padding: 18px !important;
+        border-radius: 15px !important;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08) !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    
+    /* Efecto al pasar o tocar una tarjeta */
+    .comparison-card:hover, .comparison-card:active {
+        transform: translateY(-5px) !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+    }
+    
+    /* Estilo distintivo para la tarjeta de WallyDo */
+    .comparison-card.wallydo {
+        border: 2px solid #00ccff !important;
+        background-color: rgba(0, 204, 255, 0.05) !important;
+    }
+    
+    /* Animación de pulso para indicador */
+    @keyframes pulseRight {
+        0% { transform: translateY(-50%) scale(1); box-shadow: 0 0 0 0 rgba(0, 204, 255, 0.7); }
+        50% { transform: translateY(-50%) scale(1.1); box-shadow: 0 0 0 10px rgba(0, 204, 255, 0); }
+        100% { transform: translateY(-50%) scale(1); box-shadow: 0 0 0 0 rgba(0, 204, 255, 0); }
+    }
+    
+    /* Estilos para los indicadores del carrusel de comparativa */
+    .comparison-carousel-indicators {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 12px !important;
+        margin: 25px 0 15px !important;
+        width: 100% !important;
+        padding: 8px 0 !important;
+        position: relative !important;
+        z-index: 5 !important;
+        background: rgba(255, 255, 255, 0.5) !important;
+        border-radius: 20px !important;
+        max-width: 180px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+        backdrop-filter: blur(5px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+    }
+    
+    .comparison-indicator {
+        width: 32px !important;
+        height: 6px !important;
+        border-radius: 3px !important;
+        background-color: rgba(0, 0, 0, 0.15) !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+        position: relative !important;
+    }
+    
+    .comparison-indicator::after {
+        content: '' !important;
+        position: absolute !important;
+        top: -8px !important;
+        left: -8px !important;
+        right: -8px !important;
+        bottom: -8px !important;
+        z-index: 1 !important;
+    }
+    
+    .comparison-indicator.active {
+        background-color: #00ccff !important;
+        width: 45px !important;
+        box-shadow: 0 1px 5px rgba(0, 204, 255, 0.5) !important;
+    }
+    
+    /* Titulo de comparativa con estilo destacado */
+    .comparison-title {
+        margin-bottom: 25px !important;
+        position: relative !important;
+        text-align: center !important;
+        display: inline-block !important;
+        width: 100% !important;
+    }
+    
+    .comparison-title::after {
+        content: "" !important;
+        position: absolute !important;
+        bottom: -8px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 60px !important;
+        height: 3px !important;
+        background-color: #00ccff !important;
+        border-radius: 2px !important;
+    }
+    
+    /* Modifica la sección principal para posicionamiento relativo */
+    .comparison-section {
+        position: relative !important;
+        overflow: hidden !important;
+        padding-bottom: 40px !important;
+        background-color: transparent !important;
+        background-image: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Fondo personalizado para la sección de comparativa igual a Cómo funciona */
+    .comparison-section::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background: rgba(255, 255, 255, 0.92) !important; /* Mismo valor que en how-it-works */
+        z-index: 1 !important;
+    }
+    
+    /* Estilo para el contenedor dentro de la sección de comparativa */
+    .comparison-section .container {
+        position: relative !important;
+        z-index: 2 !important;
+        width: 100% !important;
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+        padding: 0 15px !important;
+    }
+    
+    .comparison-content {
+        position: relative !important;
+        padding-bottom: 20px !important;
+        background-color: transparent !important;
+        z-index: 2 !important;
+        width: 100% !important;
+    }
+    
+    /* Estilos para el texto de instrucción en móvil */
+    .comparison-mobile-hint {
+        display: block !important;
+        text-align: center !important;
+        color: rgba(0, 0, 0, 0.6) !important;
+        font-size: 0.9rem !important;
+        margin: 0 auto 20px !important;
+        font-style: italic !important;
+    }
+    
+    /* Ocultar la leyenda en desktop */
+    @media (min-width: 992px) {
+        .comparison-mobile-hint {
+            display: none !important;
+        }
+    }
+    
+    /* Estilos internos de las tarjetas de comparativa */
+    .product-name {
+        font-size: 1.3rem !important;
+        color: #333 !important;
+        margin-bottom: 15px !important;
+        text-align: center !important;
+        font-weight: 600 !important;
+        position: relative !important;
+    }
+    
+    .comparison-card.wallydo .product-name {
+        color: #00ccff !important;
+    }
+    
+    .comparison-card.wallydo .product-name::after {
+        content: "✨" !important;
+        position: absolute !important;
+        top: -2px !important;
+        right: -20px !important;
+        font-size: 1.1rem !important;
+    }
+    
+    .comparison-features {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    
+    .feature-item {
+        display: flex !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+        font-size: 0.95rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    .feature-check {
+        font-size: 1rem !important;
+        flex-shrink: 0 !important;
+        width: 20px !important;
+        text-align: center !important;
+    }
+    
+    .feature-text {
+        flex-grow: 1 !important;
+        color: #444 !important;
+    }
+    
+    /* --- Footer (Ajuste Overflow) --- */
+    .footer-fantasy {
+         overflow-x: hidden; /* Reafirmar prevención de overflow */
+         width: 100%; /* Asegurar ancho completo */
+         box-sizing: border-box;
+    }
+    
+    .footer-inner {
+        width: 100%; /* Asegurar que el contenido interno no desborde */
+        padding-left: 15px; /* Añadir padding por si acaso */
+        padding-right: 15px;
+        position: relative; /* Asegurar que es contenedor posicionado */
+        padding-bottom: 60px; /* Añadir espacio para el copyright */
+    }
+    
+    .footer-quote, .footer-cta, .footer-copy {
+        overflow-wrap: break-word;
+        word-wrap: break-word; /* Legacy */
+        word-break: break-word; /* Considerar si es necesario */
+    }
+    
+    /* Posicionamiento del copyright en el footer */
+    .copyright {
+        text-align: center !important;
+        margin-top: 40px !important; /* Aumentado de 30px a 40px */
+        padding-top: 15px !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+        width: 100% !important;
+        clear: both !important;
+        position: absolute !important; /* Cambiado de relative a absolute */
+        bottom: 15px !important; /* Posicionarlo en la parte inferior */
+        left: 0 !important; /* Asegurar alineación izquierda */
+        z-index: 1 !important;
+        font-size: 0.85rem !important;
+        color: rgba(255, 255, 255, 0.6) !important;
+        padding-left: 15px !important; /* Añadir padding lateral */
+        padding-right: 15px !important;
+    }
+
+    /* --- Flechas Carrusel Características (Ejemplo) --- */
+    .features-section {
+        position: relative; /* Necesario para posicionar flechas */
+    }
+
+    /* Estilos para los indicadores de carrusel */
+    .features-carousel-indicators {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px; /* Aumentar la separación para facilitar el toque */
+        margin-top: 25px;
+        margin-bottom: 15px;
+        width: 100%;
+        padding: 10px 0; /* Añadir padding para hacer el área táctil más grande */
+    }
+
+    .indicator-dot {
+        width: 12px; /* Ligeramente más grande */
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative; /* Para añadir un área táctil más grande */
+    }
+
+    .indicator-dot::after {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        z-index: 1;
+    }
+
+    .indicator-dot.active {
+        background-color: #00ccff;
+        transform: scale(1.2);
+    }
+    
+    /* Nuevo estilo para los puntos que se han completado (visto) */
+    .indicator-dot.completed {
+        background-color: rgba(0, 204, 255, 0.5); /* Azul claro */
+    }
+
+    /* --- Overlay Content Visibility --- */
+    .features-content,
+    .how-it-works-content,
+    .comparison-content,
+    .cta-content,
+    .footer-inner {
+        position: relative; /* Ensure content is above ::before overlays */
+        z-index: 2;
+    }
+    
+    /* Asegurar que el menú móvil funciona correctamente en la página del formulario */
+    body.form-page .mobile-menu {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        transform: translateY(-150%);
+        opacity: 0;
+        visibility: hidden;
+        z-index: 999;
+    }
+    
+    body.form-page .mobile-menu.is-active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* ===================================
+   Further adjustments for very small screens (<= 480px)
+   =================================== */
+@media (max-width: 480px) {
+    h1, .title {
+        font-size: 2.6rem; /* Further reduce H1 */
+    }
+
+    h2, .section-title, .how-it-works-title, .comparison-title, .cta-title {
+        font-size: 1.6rem; /* Further reduce H2 */
+    }
+    
+    .description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    /* Ajuste adicional para el texto introductorio en pantallas muy pequeñas */
+    .features-intro {
+        font-size: 1.2rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 20px !important;
+    }
+
+    .toolbar-logo {
+        height: 25px;
+    }
+
+    .toolbar-actions .btn-beta {
+        padding: 5px 10px;
+        font-size: 0.7rem;
+    }
+    
+    section {
+        padding: 40px 10px;
+    }
+
+    .feature-card, .comparison-card {
+        padding: 15px;
+    }
+
+    .cta-form {
+        padding: 50px 15px;
+    }
+
+    .btn-principal {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .timeline::before {
+        left: 15px; /* Adjust line position slightly */
+    }
+    
+    .timeline-step {
+        padding-left: 45px; /* Adjust padding */
+    }
+    
+    .timeline-dot {
+        left: 6px; /* Adjust dot position */
+    }
+    
+    .form-container {
+        width: 95%;
+        padding: 10px;
+    }
+}
+
+/* ===================================
+   Tablet adjustments (769px to 991px)
+   =================================== */
+@media (min-width: 769px) and (max-width: 991px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+        gap: 25px;
+    }
+
+    .comparison-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+        gap: 25px;
+    }
+    
+    .toolbar {
+        padding: 0 30px;
+    }
+    
+    .toolbar-nav {
+        display: flex; /* Show nav links on tablet */
+    }
+    
+    /* Pero mantener oculta la navegación en tablets para la página del formulario */
+    body.form-page .toolbar-nav {
+        display: none !important;
+    }
+    
+    .timeline {
+        max-width: 800px; /* Give timeline a max-width */
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Asegurar que el botón hamburguesa está completamente oculto en desktop */
+@media (min-width: 992px) {
+    .hamburger {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        position: absolute !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        margin: -1px !important;
+        padding: 0 !important;
+        border: 0 !important;
+    }
+}
+
+/* --- Ajuste específico para tablets (la sección "Cómo funciona") --- */
+@media (min-width: 600px) and (max-width: 991px) {
+    .timeline {
+        max-width: 650px; /* Un poco más ancho para tablets */
+        padding: 0 30px !important; /* Más padding horizontal en tablets */
+    }
+    
+    .step-content {
+        max-height: 75px; /* Ligeramente más alto en tablets */
+    }
+    
+    .step-content.active {
+        max-height: 380px; /* Más espacio en tablets */
+    }
+    
+    .step-title {
+        font-size: 1.2rem !important; 
+    }
+    
+    .step-content.active .step-title {
+        font-size: 1.3rem !important;
+    }
+    
+    .step-description {
+        font-size: 1.05rem !important;
+    }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 360px) {
+    .timeline {
+        padding: 0 10px !important;
+    }
+    
+    .step-content {
+        padding: 18px 15px !important;
+    }
+    
+    .step-content.active {
+        padding: 22px 15px !important;
+    }
+    
+    .step-icon {
+        left: 15px;
+        width: 32px;
+        height: 32px;
+    }
+    
+    .step-title {
+        margin-left: 50px !important;
+        font-size: 1.05rem !important;
+    }
+}
+
+/* Estilos para la sección "Cómo funciona" en móvil */
+@media (max-width: 991px) {
+    .como-funciona .container {
+        padding: 0 15px;
+    }
+    
+    .como-funciona h2.section-title {
+        margin-bottom: 10px;
+    }
+    
+    .mobile-legend {
+        display: block;
+        text-align: center;
+        font-size: 16px;
+        margin-top: 15px;
+        margin-bottom: 35px;
+        padding: 0 20px;
+        color: var(--secondary-color);
+    }
+    
+    .timeline {
+        flex-direction: column;
+        gap: 35px;
+        padding: 0 10px;
+        margin-top: 30px;
+    }
+    
+    .timeline-step {
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        background-color: var(--bg-card);
+    }
+    
+    .timeline-step:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+    
+    .timeline-step.active {
+        background-color: var(--bg-card-active);
+    }
+    
+    .step-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 15px;
+    }
+    
+    .step-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    
+    .step-content {
+        max-height: none;
+        opacity: 1;
+        visibility: visible;
+        transition: none;
+        text-align: center;
+    }
+    
+    .step-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+    }
+    
+    .step-description {
+        font-size: 15px;
+        line-height: 1.5;
+        color: var(--text-color);
+    }
+    
+    /* Estilos para el popup móvil */
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .popup-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .mobile-popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        width: 85%;
+        max-width: 400px;
+        background-color: var(--bg-color);
+        border-radius: 15px;
+        padding: 25px;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .mobile-popup.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .popup-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: var(--text-color);
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+    
+    .popup-close:hover {
+        color: var(--primary-color);
+    }
+    
+    .popup-icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 20px;
+    }
+    
+    .popup-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    
+    .popup-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        text-align: center;
+        color: var(--primary-color);
+    }
+    
+    .popup-description {
+        font-size: 16px;
+        line-height: 1.6;
+        text-align: center;
+        color: var(--text-color);
+    }
+}
+
+@media (max-width: 480px) {
+    .como-funciona .container {
+        padding: 0 10px;
+    }
+    
+    .mobile-legend {
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+    
+    .timeline {
+        gap: 25px;
+    }
+    
+    .step-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .step-title {
+        font-size: 16px;
+    }
+    
+    .step-description {
+        font-size: 14px;
+    }
+    
+    .mobile-popup {
+        padding: 20px;
+    }
+    
+    .popup-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .popup-title {
+        font-size: 18px;
+    }
+    
+    .popup-description {
+        font-size: 15px;
+    }
+}
+
+/* Mejorar el formato del texto introductorio en pantallas pequeñas */
+.features-intro {
+    font-size: 1.4rem !important; /* Reducir tamaño para móviles */
+    line-height: 1.4 !important; /* Mejorar interlineado */
+    margin-bottom: 25px !important; /* Aumentar espacio después del texto */
+    padding: 0 10px !important; /* Reducir padding lateral */
+    max-width: 100% !important; /* Usar todo el ancho disponible */
+    text-align: center !important; /* Centrar texto */
+}
+
+/* Ajustar el contenedor para mejor distribución */
+.features-content {
+    padding: 30px 15px !important; /* Reducir padding general */
+}
+
+/* Ocultar scrollbar para Chrome/Safari/Opera */
+.features-grid::-webkit-scrollbar {
+        display: none;
+    }
+    
+.feature-card {
+    flex: 0 0 85%; /* Cada tarjeta ocupa el 85% del ancho */
+    scroll-snap-align: center;
+    box-sizing: border-box;
+    min-width: 250px;
+    margin-right: 0; /* Eliminar margen que pudiera interferir */
+}
+
+.feature-card, .comparison-card {
+    box-sizing: border-box; 
+}
+  

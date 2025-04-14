@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>WallyDo</title>
     <link rel="stylesheet" href="themes/light/style-light.css">
+    <link rel="stylesheet" href="responsive.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
@@ -14,17 +16,34 @@
     <div class="toolbar">
         <div class="toolbar-logo">
             <a href="#" id="logo-home-link">
-                <img src="assets/logos/LOGO_NEGRO.png" alt="WallyDo Logo" class="toolbar-logo-img">
+                <img src="assets/logos/LOGO_NEGRO.png" alt="WallyDo Logo">
             </a>
         </div>
+        <!-- Botón Hamburguesa (visible en móvil) -->
+        <button class="hamburger" aria-label="Abrir menú">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+        <!-- Navegación Desktop (oculta en móvil) -->
         <div class="toolbar-nav">
             <a href="#features" class="nav-link">Características</a>
             <a href="#how-it-works" class="nav-link">Cómo Funciona</a>
             <a href="#comparison" class="nav-link">Comparativa</a>
         </div>
         <div class="toolbar-actions">
-            <a href="form/form-light.html" class="btn-beta">Ayudanos</a>
+            <!-- Botón Desktop (oculto en móvil) -->
+            <a href="form/form-light.html" class="btn-beta">Ayúdanos</a>
         </div>
+    </div>
+
+    <!-- Menú Móvil (inicialmente oculto) -->
+    <div class="mobile-menu">
+        <a href="#features" class="mobile-nav-link">Características</a>
+        <a href="#how-it-works" class="mobile-nav-link">Cómo Funciona</a>
+        <a href="#comparison" class="mobile-nav-link">Comparativa</a>
+        <!-- Botón "Ayudanos" eliminado de aquí, ahora estará visible en la barra -->
+        <!-- <a href="form/form-light.html" class="btn-beta mobile-btn-beta">Ayudanos</a> -->
     </div>
 
     <!-- Sección Hero -->
@@ -87,6 +106,13 @@
                     </p>
                 </div>
             </div>
+            
+            <!-- Indicadores de carrusel -->
+            <div class="features-carousel-indicators">
+                <span class="indicator-dot" data-position="0"></span>
+                <span class="indicator-dot" data-position="1"></span>
+                <span class="indicator-dot" data-position="2"></span>
+            </div>
         </div>
     </section>
 
@@ -94,7 +120,8 @@
     <section id="how-it-works" class="how-it-works">
         <div class="how-it-works-content">
             <h2 class="how-it-works-title">Cómo funciona WallyDo</h2>
-            <p class="hover-legend">🖱️ Pasa el cursor sobre cada etapa para descubrir más</p>
+            <p class="hover-legend hover-legend-desktop"><img src="assets/icons/mouse.svg" alt="Mano apuntando" class="hover-icon"> Pasa el cursor sobre cada etapa para descubrir más</p>
+            <p class="hover-legend hover-legend-mobile"><img src="assets/icons/hand-pointing.svg" alt="Clic del ratón" class="hover-icon"> Toca los iconos para conocer cada paso</p>
             <div class="timeline-container">
                 <div class="timeline">
                     <div class="timeline-step top" data-aos="fade-right" data-aos-delay="100" data-aos-duration="800">
@@ -132,7 +159,7 @@
                     <div class="timeline-step bottom" data-aos="fade-left" data-aos-delay="700" data-aos-duration="800">
                         <div class="step-content">
                             <span class="step-icon"><img src="assets/icons/barbell.svg" alt="Barbell" class="step-icon-img"></span>
-                            <h4 class="step-title">Te propone hábitos</h4>
+                            <h4 class="step-title">Te propone Hábitos</h4>
                             <p class="step-description"> Basándose en tus objetivos, recibe sugerencias personalizadas para mejorar tus rutinas.</p>
                         </div>
                         <div class="timeline-dot"></div>
@@ -145,55 +172,61 @@
 
     <!-- Sección Comparativa -->
     <section id="comparison" class="comparison-section">
-        <div class="comparison-content">
-            <h2 class="comparison-title">¿Por qué WallyDo y no otra app?</h2>
-            
-            <div class="comparison-grid">
-                <div class="comparison-card wallydo" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="800">
-                    <img src="assets/logos/wallydo_logogris.svg" alt="WallyDo" class="comparison-logo">
-                    <h3 class="comparison-name">WallyDo</h3>
-                    <ul class="feature-list">
-                        <li class="feature-item wallydo-exclusive">Asistente IA personalizado</li>
-                        <li class="feature-item wallydo-exclusive">Aprendizaje automático</li>
-                        <li class="feature-item wallydo-exclusive">Sugerencias de hábitos</li>
-                        <li class="feature-item wallydo-exclusive">Recordatorios inteligentes</li>
-                        <li class="feature-item wallydo-exclusive">Adaptación a tu estilo de vida</li>
-                    </ul>
-                </div>
-                <div class="comparison-card" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="800">
-                    <img src="assets/img/google-calendar.png" alt="Google Calendar" class="comparison-logo">
-                    <h3 class="comparison-name">Google Calendar</h3>
-                    <ul class="feature-list">
-                        <li class="feature-item">Calendario básico</li>
-                        <li class="feature-item">Recordatorios simples</li>
-                        <li class="feature-item missing">Sin IA personalizada</li>
-                        <li class="feature-item missing">Sin sugerencias de hábitos</li>
-                        <li class="feature-item missing">Sin aprendizaje automático</li>
-                    </ul>
-                </div>
+        <!-- Fondo personalizado que aparece detrás de todo -->
+        <div class="comparison-background"></div>
+        <div class="container">
+            <div class="comparison-content">
+                <h2 class="comparison-title">¿Por qué WallyDo y no otra app?</h2>
                 
-                <div class="comparison-card" data-aos="zoom-in" data-aos-delay="500" data-aos-duration="800">
-                    <img src="assets/img/todoist.png" alt="Todoist" class="comparison-logo">
-                    <h3 class="comparison-name">Todoist</h3>
-                    <ul class="feature-list">
-                        <li class="feature-item">Gestión de tareas</li>
-                        <li class="feature-item">Priorización básica</li>
-                        <li class="feature-item missing">IA limitada</li>
-                        <li class="feature-item missing">Sin aprendizaje de hábitos</li>
-                        <li class="feature-item missing">Sin sugerencias personalizadas</li>
-                    </ul>
-                </div>
+          
                 
-                <div class="comparison-card" data-aos="zoom-in" data-aos-delay="700" data-aos-duration="800">
-                    <img src="assets/img/asana.png" alt="Asana" class="comparison-logo">
-                    <h3 class="comparison-name">Asana</h3>
-                    <ul class="feature-list">
-                        <li class="feature-item">Gestión de proyectos</li>
-                        <li class="feature-item">Colaboración en equipo</li>
-                        <li class="feature-item missing">Sin asistente IA</li>
-                        <li class="feature-item missing">Sin recordatorios inteligentes</li>
-                        <li class="feature-item missing">Sin seguimiento de hábitos</li>
-                    </ul>
+                <div class="comparison-grid">
+                    <div class="comparison-card wallydo" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="800">
+                        <img src="assets/logos/wallydo_logogris.svg" alt="WallyDo" class="comparison-logo">
+                        <h3 class="comparison-name">WallyDo</h3>
+                        <ul class="feature-list">
+                            <li class="feature-item wallydo-exclusive">Asistente IA personalizado</li>
+                            <li class="feature-item wallydo-exclusive">Aprendizaje automático</li>
+                            <li class="feature-item wallydo-exclusive">Sugerencias de hábitos</li>
+                            <li class="feature-item wallydo-exclusive">Recordatorios inteligentes</li>
+                            <li class="feature-item wallydo-exclusive">Adaptación a tu estilo de vida</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="800">
+                        <img src="assets/img/google-calendar.png" alt="Google Calendar" class="comparison-logo">
+                        <h3 class="comparison-name">Google Calendar</h3>
+                        <ul class="feature-list">
+                            <li class="feature-item">Calendario básico</li>
+                            <li class="feature-item">Recordatorios simples</li>
+                            <li class="feature-item missing">Sin IA personalizada</li>
+                            <li class="feature-item missing">Sin sugerencias de hábitos</li>
+                            <li class="feature-item missing">Sin aprendizaje automático</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card" data-aos="zoom-in" data-aos-delay="500" data-aos-duration="800">
+                        <img src="assets/img/todoist.png" alt="Todoist" class="comparison-logo">
+                        <h3 class="comparison-name">Todoist</h3>
+                        <ul class="feature-list">
+                            <li class="feature-item">Gestión de tareas</li>
+                            <li class="feature-item">Priorización básica</li>
+                            <li class="feature-item missing">IA limitada</li>
+                            <li class="feature-item missing">Sin aprendizaje de hábitos</li>
+                            <li class="feature-item missing">Sin sugerencias personalizadas</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card" data-aos="zoom-in" data-aos-delay="700" data-aos-duration="800">
+                        <img src="assets/img/asana.png" alt="Asana" class="comparison-logo">
+                        <h3 class="comparison-name">Asana</h3>
+                        <ul class="feature-list">
+                            <li class="feature-item">Gestión de proyectos</li>
+                            <li class="feature-item">Colaboración en equipo</li>
+                            <li class="feature-item missing">Sin asistente IA</li>
+                            <li class="feature-item missing">Sin recordatorios inteligentes</li>
+                            <li class="feature-item missing">Sin seguimiento de hábitos</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

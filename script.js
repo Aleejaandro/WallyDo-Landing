@@ -1,6 +1,431 @@
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("feedback-form");
     
+    // Código para el menú hamburguesa en dispositivos móviles
+    const hamburgerButton = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (hamburgerButton && mobileMenu) {
+        hamburgerButton.addEventListener('click', function() {
+            this.classList.toggle('is-active');
+            mobileMenu.classList.toggle('is-active');
+        });
+
+        // También cerrar el menú cuando se hace clic en un enlace del menú móvil
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburgerButton.classList.remove('is-active');
+                mobileMenu.classList.remove('is-active');
+            });
+        });
+    }
+    
+    // NUEVO: Configuración del carrusel de comparativa
+    function setupComparisonCarousel() {
+        const comparisonGrid = document.querySelector('.comparison-grid');
+        if (!comparisonGrid) return;
+        
+        const comparisonSection = document.querySelector('.comparison-section');
+        const cards = comparisonGrid.querySelectorAll('.comparison-card');
+        const comparisonBackground = document.querySelector('.comparison-background');
+        
+        if (cards.length <= 0) return;
+        
+        // Determinar si estamos en móvil
+        const isMobile = window.innerWidth <= 768;
+        
+        // Asegurarse de que el fondo tenga la imagen correcta
+        if (comparisonBackground && !comparisonBackground.style.backgroundImage) {
+            comparisonBackground.style.backgroundImage = 'url("assets/img/comparison-bg.jpg")';
+        }
+        
+        if (!isMobile) return;
+        
+        // Añadir fondo personalizado a la sección
+        if (comparisonSection) {
+            // Aplicar estilo para el fondo
+            comparisonSection.style.position = 'relative';
+            comparisonSection.style.zIndex = '1';
+            
+            // Comprobar si ya existe un fondo
+            if (!document.querySelector('.comparison-background')) {
+                // Crear elemento de fondo
+                const backgroundElement = document.createElement('div');
+                backgroundElement.className = 'comparison-background';
+                backgroundElement.style.position = 'absolute';
+                backgroundElement.style.top = '0';
+                backgroundElement.style.left = '0';
+                backgroundElement.style.width = '100%';
+                backgroundElement.style.height = '100%';
+                backgroundElement.style.zIndex = '-1';
+                backgroundElement.style.opacity = '0.15';
+                backgroundElement.style.backgroundSize = 'cover';
+                backgroundElement.style.backgroundPosition = 'center';
+                backgroundElement.style.backgroundRepeat = 'no-repeat';
+                backgroundElement.style.backgroundImage = 'url("assets/img/comparison-bg.jpg")';
+                
+                // Insertar antes del primer hijo
+                comparisonSection.insertBefore(backgroundElement, comparisonSection.firstChild);
+            }
+        }
+        
+        // Destacar la tarjeta de WallyDo
+        cards.forEach(card => {
+            if (card.querySelector('.product-name')?.textContent.includes('WallyDo')) {
+                card.classList.add('wallydo');
+            }
+        });
+        
+        // Crear indicadores de carrusel
+        let indicatorsHTML = '';
+        const indicatorsContainer = document.createElement('div');
+        indicatorsContainer.className = 'comparison-carousel-indicators';
+        
+        cards.forEach((_, index) => {
+            indicatorsHTML += `<div class="comparison-indicator ${index === 0 ? 'active' : ''}"></div>`;
+        });
+        
+        indicatorsContainer.innerHTML = indicatorsHTML;
+        
+        // Verificar si ya existe un contenedor de indicadores
+        const existingIndicators = comparisonSection.querySelector('.comparison-carousel-indicators');
+        if (!existingIndicators) {
+            if (comparisonSection) {
+                comparisonSection.appendChild(indicatorsContainer);
+            } else if (comparisonGrid.parentNode) {
+                comparisonGrid.parentNode.appendChild(indicatorsContainer);
+            }
+        }
+        
+        // Agregar eventos a los indicadores
+        const indicators = document.querySelectorAll('.comparison-indicator');
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                // Calcular posición a desplazar
+                const cardWidth = cards[0].offsetWidth;
+                const margin = parseInt(window.getComputedStyle(cards[0]).marginRight) || 0;
+                const scrollPosition = (cardWidth + margin) * index;
+                
+                // Desplazar al elemento correcto con animación suave
+                comparisonGrid.scrollTo({
+                    left: scrollPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Actualizar indicador activo
+                indicators.forEach(ind => ind.classList.remove('active'));
+                indicator.classList.add('active');
+            });
+        });
+        
+        // Actualizar indicador activo al desplazarse
+        comparisonGrid.addEventListener('scroll', () => {
+            // Usar debounce para mejor rendimiento
+            clearTimeout(comparisonGrid.scrollTimeout);
+            comparisonGrid.scrollTimeout = setTimeout(() => {
+                const scrollPosition = comparisonGrid.scrollLeft;
+                const cardWidth = cards[0].offsetWidth;
+                const margin = parseInt(window.getComputedStyle(cards[0]).marginRight) || 0;
+                
+                // Calcular qué tarjeta es más visible
+                const currentIndex = Math.round(scrollPosition / (cardWidth + margin));
+                
+                if (currentIndex >= 0 && currentIndex < indicators.length) {
+                    indicators.forEach((ind, i) => {
+                        ind.classList.toggle('active', i === currentIndex);
+                    });
+                }
+            }, 50);
+        });
+        
+        // Animación del indicador al cargar la página
+        if (comparisonSection) {
+            // Ocultar después de 3 segundos (la primera vez)
+            setTimeout(() => {
+                comparisonSection.style.setProperty('--indicator-opacity', '0');
+            }, 3000);
+        }
+    }
+    
+    // Llamar a la función cuando la página esté lista
+    setupComparisonCarousel();
+    
+    // Volver a configurar al cambiar el tamaño de la ventana
+    window.addEventListener('resize', () => {
+        setTimeout(setupComparisonCarousel, 200);
+    });
+    
+    // Mobile Popups para la sección "Cómo funciona"
+    document.addEventListener('DOMContentLoaded', function() {
+        // Solo aplicar en dispositivos móviles
+        const isMobile = window.innerWidth < 992;
+        
+        if (isMobile) {
+            setupMobilePopup();
+            
+            // Actualizar cuando cambie el tamaño de la ventana
+            window.addEventListener('resize', function() {
+                const newIsMobile = window.innerWidth < 992;
+                
+                if (newIsMobile !== isMobile) {
+                    location.reload(); // Recargar para aplicar los cambios correctamente
+                }
+            });
+        }
+        
+        function setupMobilePopup() {
+            // Crear el overlay y popup solo si aún no existen
+            if (!document.querySelector('.popup-overlay')) {
+                const popupOverlay = document.createElement('div');
+                popupOverlay.className = 'popup-overlay';
+                document.body.appendChild(popupOverlay);
+                
+                const mobilePopup = document.createElement('div');
+                mobilePopup.className = 'mobile-popup';
+                mobilePopup.innerHTML = `
+                    <button class="popup-close">&times;</button>
+                    <div class="popup-icon"></div>
+                    <h3 class="popup-title"></h3>
+                    <p class="popup-description"></p>
+                `;
+                document.body.appendChild(mobilePopup);
+                
+                // Agregar evento para cerrar el popup
+                const closeBtn = mobilePopup.querySelector('.popup-close');
+                closeBtn.addEventListener('click', closePopup);
+                
+                // Cerrar el popup cuando se hace clic en el overlay
+                popupOverlay.addEventListener('click', closePopup);
+                
+                // Manejar tecla ESC para cerrar el popup
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && document.querySelector('.popup-overlay.active')) {
+                        closePopup();
+                    }
+                });
+            }
+            
+            // Agregar eventos a los pasos del timeline
+            const timelineSteps = document.querySelectorAll('.timeline-step');
+            
+            timelineSteps.forEach(step => {
+                const stepIcon = step.querySelector('.step-icon');
+                const stepTitle = step.querySelector('.step-title');
+                const stepDescription = step.querySelector('.step-description');
+                
+                if (stepIcon) {
+                    stepIcon.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Obtener contenido del paso
+                        const iconImg = stepIcon.querySelector('img');
+                        const title = stepTitle ? stepTitle.textContent : '';
+                        const description = stepDescription ? stepDescription.textContent : '';
+                        
+                        // Mostrar popup con el contenido
+                        showPopup(iconImg.src, title, description);
+                    });
+                }
+            });
+        }
+        
+        function showPopup(iconSrc, title, description) {
+            const popup = document.querySelector('.mobile-popup');
+            const overlay = document.querySelector('.popup-overlay');
+            const popupIcon = popup.querySelector('.popup-icon');
+            const popupTitle = popup.querySelector('.popup-title');
+            const popupDescription = popup.querySelector('.popup-description');
+            
+            // Configurar contenido
+            popupIcon.innerHTML = `<img src="${iconSrc}" alt="${title}">`;
+            popupTitle.textContent = title;
+            popupDescription.textContent = description;
+            
+            // Activar popup
+            popup.classList.add('active');
+            overlay.classList.add('active');
+            
+            // Prevenir scroll del body
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closePopup() {
+            const popup = document.querySelector('.mobile-popup');
+            const overlay = document.querySelector('.popup-overlay');
+            const closeButton = document.querySelector('.popup-close');
+            
+            if (closeButton) {
+                closeButton.style.transform = 'rotate(90deg)';
+                
+                setTimeout(() => {
+                    if (popup) {
+                        popup.style.opacity = '0';
+                        popup.style.transform = 'translate(-50%, -50%) scale(0.9)';
+                    }
+                    
+                    if (overlay) {
+                        overlay.style.opacity = '0';
+                    }
+                    
+                    setTimeout(() => {
+                        if (popup) popup.remove();
+                        if (overlay) overlay.remove();
+                        document.body.style.overflow = 'auto';
+                    }, 300);
+                }, 150);
+            } else {
+                if (popup) {
+                    popup.style.opacity = '0';
+                    popup.style.transform = 'translate(-50%, -50%) scale(0.9)';
+                }
+                
+                if (overlay) {
+                    overlay.style.opacity = '0';
+                }
+                
+                setTimeout(() => {
+                    if (popup) popup.remove();
+                    if (overlay) overlay.remove();
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+    });
+    
+    // Configuración del carrusel de características
+    const featuresGrid = document.querySelector('.features-grid');
+    const indicatorDots = document.querySelectorAll('.indicator-dot');
+    
+    if (featuresGrid && indicatorDots.length > 0) {
+        // Variables para detectar el deslizamiento
+        let startX, scrollLeft, isDragging = false;
+        let itemWidth = 0;
+        let totalItems = 0;
+        
+        // Función para inicializar el carrusel
+        function initCarousel() {
+            // Obtener el ancho de los elementos y la cantidad
+            if (featuresGrid.children.length > 0) {
+                const firstItem = featuresGrid.children[0];
+                // Calcular el ancho real incluyendo el margen
+                const style = window.getComputedStyle(firstItem);
+                const marginLeft = parseInt(style.marginLeft) || 0;
+                const marginRight = parseInt(style.marginRight) || 0;
+                
+                itemWidth = firstItem.offsetWidth + marginRight + marginLeft;
+                totalItems = featuresGrid.children.length;
+                
+                console.log('Ancho calculado del elemento:', itemWidth);
+                console.log('Total de elementos:', totalItems);
+                
+                // Eliminar la clase active de todos los indicadores primero
+                indicatorDots.forEach(dot => dot.classList.remove('active', 'completed'));
+                
+                // Asignar active al primer indicador
+                if (indicatorDots[0]) {
+                    indicatorDots[0].classList.add('active');
+                }
+            }
+        }
+        
+        // Actualizar el indicador activo según la posición del scroll
+        function updateIndicators() {
+            if (!featuresGrid || !indicatorDots.length) return;
+            
+            const scrollPosition = featuresGrid.scrollLeft;
+            const containerWidth = featuresGrid.offsetWidth;
+            
+            console.log('Posición de scroll:', scrollPosition);
+            
+            // Calcular qué elemento es más visible en el centro del viewport
+            const currentIndex = Math.round(scrollPosition / itemWidth);
+            
+            console.log('Índice calculado:', currentIndex);
+            
+            // Actualizar los indicadores solo si el índice es válido
+            if (currentIndex >= 0 && currentIndex < indicatorDots.length) {
+                // Limpiar todas las clases primero
+                indicatorDots.forEach((dot, i) => {
+                    dot.classList.remove('active', 'completed');
+                    
+                    if (i < currentIndex) {
+                        dot.classList.add('completed');
+                    } else if (i === currentIndex) {
+                        dot.classList.add('active');
+                    }
+                });
+            }
+        }
+        
+        // Evento de redimensionamiento de ventana
+        window.addEventListener('resize', () => {
+            // Reinicializar el carrusel si cambia el tamaño de la ventana
+            setTimeout(initCarousel, 300);
+            setTimeout(updateIndicators, 350);
+        });
+        
+        // Detectar inicio del arrastre
+        featuresGrid.addEventListener('touchstart', () => {
+            console.log('touchstart detectado');
+        }, {passive: true});
+        
+        // Detectar fin del arrastre
+        featuresGrid.addEventListener('touchend', () => {
+            console.log('touchend detectado');
+            setTimeout(updateIndicators, 150);
+        }, {passive: true});
+        
+        // Detectar movimiento del mouse
+        featuresGrid.addEventListener('mouseup', () => {
+            setTimeout(updateIndicators, 150);
+        });
+        
+        // Añadir evento para detectar el scroll del carrusel
+        featuresGrid.addEventListener('scroll', () => {
+            // Usar debounce para no llamar updateIndicators en cada evento scroll
+            clearTimeout(featuresGrid.scrollTimeout);
+            featuresGrid.scrollTimeout = setTimeout(() => {
+                updateIndicators();
+            }, 50);
+        });
+        
+        // Permitir hacer clic en los indicadores para navegar
+        indicatorDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                console.log('Clic en indicador:', index);
+                
+                // Calcular la posición exacta a la que se debe desplazar
+                const scrollToPosition = index * itemWidth;
+                
+                // Desplazar el carrusel
+                featuresGrid.scrollTo({
+                    left: scrollToPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Actualizar visualmente los indicadores inmediatamente para feedback
+                indicatorDots.forEach((d, i) => {
+                    d.classList.remove('active', 'completed');
+                    if (i < index) {
+                        d.classList.add('completed');
+                    } else if (i === index) {
+                        d.classList.add('active');
+                    }
+                });
+            });
+        });
+        
+        // Inicializar el carrusel después de cargar la página
+        setTimeout(initCarousel, 100);
+        
+        // Ejecutar updateIndicators después de la carga completa
+        window.addEventListener('load', () => {
+            setTimeout(updateIndicators, 300);
+        });
+    }
+    
     // Solo continuar con la configuración del formulario si existe
     if (form) {
         const steps = form.querySelectorAll('.form-step');
@@ -503,8 +928,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const isFormPage = document.body.classList.contains('form-page');
                 
                 if (isFormPage) {
-                    // Si estamos en form-light.html, navegar a index-light.html
-                    window.location.href = "index.html";
+                    // Si estamos en form-light.html, navegar a index.html (ruta corregida)
+                    window.location.href = "../index.html";
                 } else {
                     // Si estamos en la misma página, hacer scroll al inicio
                     window.scrollTo({
@@ -542,8 +967,106 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, 500); // Pequeño retraso para asegurar que todos los elementos están cargados
     }
-    
-    // Código para manejar elementos que podrían estar en cualquier página
-    // ...
+
+    // Inicializar los popups de la sección Cómo funciona
+    function initComoFuncionaPopups() {
+        const isMobile = window.innerWidth < 992;
+        const timelineSteps = document.querySelectorAll('.timeline-step');
+        
+        // Verificar si ya existe el popup para evitar duplicados
+        let popupOverlay = document.querySelector('.popup-overlay');
+        let mobilePopup = document.querySelector('.mobile-popup');
+        
+        // Crear el popup solo si estamos en vista móvil y no existe aún
+        if (isMobile && (!popupOverlay || !mobilePopup)) {
+            // Crear overlay del popup
+            popupOverlay = document.createElement('div');
+            popupOverlay.className = 'popup-overlay';
+            document.body.appendChild(popupOverlay);
+            
+            // Crear el popup
+            mobilePopup = document.createElement('div');
+            mobilePopup.className = 'mobile-popup';
+            mobilePopup.innerHTML = `
+                <button class="popup-close">&times;</button>
+                <div class="popup-icon"></div>
+                <h3 class="popup-title"></h3>
+                <p class="popup-description"></p>
+            `;
+            document.body.appendChild(mobilePopup);
+            
+            // Evento para cerrar el popup al hacer clic en el overlay
+            popupOverlay.addEventListener('click', closePopup);
+            
+            // Evento para cerrar el popup al hacer clic en el botón de cerrar
+            const closeButton = mobilePopup.querySelector('.popup-close');
+            closeButton.addEventListener('click', closePopup);
+        }
+        
+        // Agregar eventos de clic a los pasos de la línea de tiempo
+        timelineSteps.forEach(step => {
+            step.addEventListener('click', function() {
+                if (isMobile) {
+                    showPopup(this);
+                }
+            });
+        });
+        
+        // Función para mostrar el popup con la información del paso seleccionado
+        function showPopup(step) {
+            // Obtener elementos del popup
+            const popupIcon = document.querySelector('.popup-icon');
+            const popupTitle = document.querySelector('.popup-title');
+            const popupDescription = document.querySelector('.popup-description');
+            
+            // Obtener información del paso
+            const stepIcon = step.querySelector('.step-icon');
+            const stepTitle = step.querySelector('.step-title');
+            const stepDescription = step.querySelector('.step-description');
+            
+            // Clonar el icono para mantener su estilo
+            popupIcon.innerHTML = '';
+            const iconClone = stepIcon.querySelector('img').cloneNode(true);
+            popupIcon.appendChild(iconClone);
+            
+            // Actualizar título y descripción
+            popupTitle.textContent = stepTitle.textContent;
+            popupDescription.textContent = stepDescription.textContent;
+            
+            // Mostrar el popup y el overlay
+            popupOverlay.classList.add('active');
+            mobilePopup.classList.add('active');
+            
+            // Prevenir scroll del body
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Función para cerrar el popup
+        function closePopup() {
+            const popupOverlay = document.querySelector('.popup-overlay');
+            const mobilePopup = document.querySelector('.mobile-popup');
+            
+            if (popupOverlay && mobilePopup) {
+                popupOverlay.classList.remove('active');
+                mobilePopup.classList.remove('active');
+                
+                // Restaurar scroll del body
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Evento para recargar la página si cambia el tamaño de la ventana 
+        // entre móvil y desktop para reinicializar correctamente
+        let lastIsMobile = isMobile;
+        window.addEventListener('resize', function() {
+            const currentIsMobile = window.innerWidth < 992;
+            if (currentIsMobile !== lastIsMobile) {
+                location.reload();
+            }
+        });
+    }
+
+    // Llamar a la función cuando el DOM esté listo
+    initComoFuncionaPopups();
 });
   
