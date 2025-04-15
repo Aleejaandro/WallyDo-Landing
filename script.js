@@ -695,6 +695,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 formData.email = email.value;
             }
 
+            const fraseUsuario = document.querySelector('textarea[name="frase_usuario"]');
+            if (fraseUsuario) {
+                formData.frase_usuario = fraseUsuario.value;
+            }
+
+
             return formData;
         }
 
